@@ -24,7 +24,7 @@ $$
 $$
 \begin{equation}
 \pi^{BC}\_h(a\vert s)=\begin{cases}
-\frac{\#tr\_h(.,.)=(s,a)}{\sum\_{{a}'}\#tr\_h(.,.)=(s,{a}')} & if \sum\_{{a}'}\#tr\_h(.,.)=(s,{a}')>0 \\
+\frac{\\#tr\_h(.,.)=(s,a)}{\sum\_{{a}'}\\#tr\_h(.,.)=(s,{a}')} & if \sum\_{{a}'}\\#tr\_h(.,.)=(s,{a}')>0 \\
 \frac{1}{\vert\mathcal{A}\vert} & otherwise
 \end{cases}\tag{4}
 \end{equation}
