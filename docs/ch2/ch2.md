@@ -21,6 +21,8 @@ $$
 \sum_a\pi_h(a|s)=1,\forall s\epsilon S,h\epsilon[H].\tag{3}
 $$
 为了便于理解行为克隆，在表格模型中进行分析，其目标函数(3)的最优解为式(4) 
+
+
 $$
 \begin{equation}
 \pi^{BC}_h(a\vert s)=\begin{cases}
@@ -29,5 +31,7 @@ $$
 \end{cases}\tag{4}
 \end{equation}
 $$
+
+
 根据式(4)，可知，若状态$s$存在与轨迹的第$h$时刻中，那么策略为所有轨迹$h$时刻$(s,a)$个数与$s$个数的比值；若状态$s$不存在于任何轨迹的$h$时刻，那么该状态下所有动作的概率为$\frac{1}{\vert\mathcal{A}\vert}$，$\vert\mathcal{A}\vert$表示所有动作个数，即均匀策略。
 
