@@ -75,6 +75,12 @@ $$
 
 
 
+### 复合误差
+
+
+
+
+
 
 
 ### 案例
@@ -88,3 +94,7 @@ $$
 ## 参考文献
 
 [1] Rajaraman N , Yang L F , Jiao J ,et al.Toward the Fundamental Limits of Imitation Learning[J].  2020.DOI:10.48550/arXiv.2009.05990.
+
+[2] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
+
+[3] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
