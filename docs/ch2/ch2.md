@@ -57,15 +57,13 @@ $$
 
 ### 上界 
 
-**理论2.2：行为克隆误差上界**
-
-*假设智能体有$N$条长度为$H$的专家轨迹，且这些轨迹由确定性专家策略$\pi^E$生成。那么，行为克隆算法产生策略$\pi^{BC}$*
+**定理2.2：** *假设智能体有$N$条长度为$H$的专家轨迹，且这些轨迹由确定性专家策略$\pi^E$生成。那么，行为克隆算法产生策略$\pi^{BC}$*
 
 - *专家策略与BC策略之间误差有界于*
 
 $$
 \begin{equation}
-J(\pi^E)-\mathbb{E}[J(\pi^{BC})]\le min\{H,\frac{\vert\mathcal{S}\vert H^2}{N}\} \tag{2.7}
+J(\pi^E)-\mathbb{E}[J(\pi^{BC})]\le min\\{H,\frac{\vert\mathcal{S}\vert H^2}{N}\\} \tag{2.7}
 \end{equation}
 $$
 - *对于任何$\delta\in(0,min\{1,\frac{H}{10}\})$，以$1-\delta$的概率误差有界于*
@@ -82,8 +80,12 @@ $$
 
 ### 下界
 
-
-
+**定理2.3：** *在无交互场景下，对于智能体的策略$\pi^{BC}$，存在一个马尔科夫决策过程和确定型专家策略$\pi^E$，策略$\pi^{BC}$的下界为*
+$$
+\begin{equation}
+J(\pi^E)-E[J(\pi^{BC})] \ge min\\{H, \frac{\vert\mathcal{S}\vert H^2}{N}\\}
+\end{equation}
+$$
 
 
 ### 极小极大最优
