@@ -50,7 +50,7 @@ $$
 *引理2.1 在无交互场景下，专家策略$\pi^{E}$为确定型时，对于行为克隆算法的任何策略$\pi^{BC}$与专家策略不一致的概率有界于$min\{1,\frac{\vert\mathcal{S}\vert}{N}\}$，即式(2.6)*
 $$
 \begin{equation}
-\mathbb{E}[\frac{1}{H}\sum_{t=1}^{H}\mathbb{E}_{s_t\sim f^t_{\pi^{E}}}[\mathbb{E}_{a\sim\pi_t^{BC}(.\vert s_t)}[\mathbb{1}(a\neq\pi_t^{E}(s_t))]]]\le min\{1,\frac{\vert\mathcal{S}\vert}{N}\}\tag{2.6}
+\mathbb{E}[\frac{1}{H}\sum_{t=1}^{H}\mathbb{E}_{s_t\sim f^t_{\pi^{E}}}[\mathbb{E}\_{a\sim\pi_t^{BC}(.\vert s_t)}[\mathbb{1}(a\neq\pi_t^{E}(s_t))]]]\le min\{1,\frac{\vert\mathcal{S}\vert}{N}\}\tag{2.6}
 \end{equation}
 $$
 策略$\hat{\pi}$与专家策略不一致概率，主要是在专家策略下不会产生的状态，即BC算法不会学习到的策略，因此不一致概率有界于$\frac{\vert\mathcal{S}\vert}{N}$。
