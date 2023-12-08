@@ -45,7 +45,7 @@ $$
 
 
 
-## 无折扣模型下的统计极限
+## 有限长度回合制MDP下的统计极限
 
 *引理2.1 在无交互场景下，专家策略$\pi^{E}$为确定型时，对于行为克隆算法的任何策略$\pi^{BC}$与专家策略不一致的概率有界于$min\{1,\frac{\vert\mathcal{S}\vert}{N}\}$，即式(2.6)*
 $$
@@ -100,7 +100,7 @@ $$
 
 
 
-## 有折扣模型下的统计极限
+## 无限长度折扣MDP下的统计极限
 
 
 
@@ -110,6 +110,8 @@ $$
 
 [1] Rajaraman N , Yang L F , Jiao J ,et al.Toward the Fundamental Limits of Imitation Learning[J].  2020.DOI:10.48550/arXiv.2009.05990.
 
-[2] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
+[2] Xu T , Li Z , Yu Y .Error Bounds of Imitating Policies and Environments[J].  2020.DOI:10.48550/arXiv.2010.11876.
 
-[3] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
+[3] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
+
+[4] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
