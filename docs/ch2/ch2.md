@@ -103,7 +103,7 @@ $$
 **定理2.4:**  *若专家策略$\pi_{E}$与模仿策略$\pi^{BC}$之间满足式(2.10)*
 $$
 \begin{equation}
-\mathbb{E}_{s\sim d_{\pi_{E}}}[D_{KL}(\pi_E(.\vert s),\pi_{BC}(.\vert s))] \le \epsilon\tag{2.10}
+\mathbb{E}\_{s\sim d_{\pi_{E}}}[D_{KL}(\pi_E(.\vert s),\pi_{BC}(.\vert s))] \le \epsilon\tag{2.10}
 \end{equation}
 $$
 *那么，BC算法误差上界为*
@@ -118,10 +118,10 @@ $$
 
 文献[3]对无交互场景下模仿学习的下界给出了一个命题。
 
-**命题2.1:** 给定专家数据$D=\{(s_{\pi_E}^{i},a_{\pi_E}^i)\}_{i=1}^m$，对于任何算法$Alg: D\to \pi$，存在一个MDP $\mathcal{M}$和专家策略$\pi_E$，有
+**命题2.1:** 给定专家数据$D=\{(s_{\pi_E}^{i},a_{\pi_E}^i)\}\_{i=1}^m$，对于任何算法$Alg: D\to \pi$，存在一个MDP $\mathcal{M}$和专家策略$\pi_E$，有
 $$
 \begin{equation}
-V^{\mathcal{M}}_{\pi_E}-V^{\mathcal{M}}_{\pi}\ge(\frac{1}{1-\gamma},\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)m})
+V^{\mathcal{M}}\_{\pi_E}-V^{\mathcal{M}}\_{\pi}\ge(\frac{1}{1-\gamma},\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)m})
 \end{equation}
 $$
 根据定理2.4和命题2.1可知，无限长度折扣马尔科夫决策过程下的行为克隆算法上下界均为$\hat{O}(\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)\epsilon})$，即表明行为克隆算法在环境转移概率未知的设定下，是极小极大最优算法。
