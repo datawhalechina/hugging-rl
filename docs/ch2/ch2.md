@@ -90,19 +90,43 @@ $$
 
 ### 极小极大最优
 
-
+根据定理2.2和2.3可知，有限长度回合制马尔科夫决策过程下的行为克隆算法上下界均为$\hat{O}(\frac{\vert\mathcal{S}\vert H^2}{\epsilon})$，表明该算法为极小极大最优。
 
  
 
-### 案例
-
-
-
-
-
 ## 无限长度折扣MDP下的统计极限
 
+文献[2~3]对无限长度的折扣马尔科夫决策过程下行为克隆算法的上下界进行了推导与证明。
 
+### 上界
+
+**定理2.4:**  *若专家策略$\pi_{E}$与模仿策略$\pi^{BC}$之间满足式(2.10)*
+$$
+\begin{equation}
+\mathbb{E}_{s\sim d_{\pi_{E}}}[D_{KL}(\pi_E(.\vert s),\pi_{BC}(.\vert s))] \le \epsilon\tag{2.10}
+\end{equation}
+$$
+*那么，BC算法误差上界为*
+$$
+\begin{equation}
+V_{\pi_{E}}-V_{\pi_{BC}}\le\frac{2\sqrt{2}R_{max}}{(1-\gamma^{2})}\sqrt{\epsilon}\tag{2.11}
+\end{equation}
+$$
+
+
+### 下界
+
+文献[3]对无交互场景下模仿学习的下界给出了一个命题。
+
+**命题2.1:** 给定专家数据$D=\{(s_{\pi_E}^{i},a_{\pi_E}^i)\}_{i=1}^m$，对于任何算法$Alg: D\to \pi$，存在一个MDP $\mathcal{M}$和专家策略$\pi_E$，有
+$$
+\begin{equation}
+V^{\mathcal{M}}_{\pi_E}-V^{\mathcal{M}}_{\pi}\ge(\frac{1}{1-\gamma},\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)m})
+\end{equation}
+$$
+根据定理2.4和命题2.1可知，无限长度折扣马尔科夫决策过程下的行为克隆算法上下界均为$\hat{O}(\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)\epsilon})$，即表明行为克隆算法在环境转移概率未知的设定下，是极小极大最优算法。
+
+无论是有限长度回合制马尔科夫决策过程，还是无限长度的折扣马尔科夫决策过程，误差的上下界是根据特例推导而来，使用的特例是Reset Cliff。
 
 
 
@@ -112,6 +136,8 @@ $$
 
 [2] Xu T , Li Z , Yu Y .Error Bounds of Imitating Policies and Environments[J].  2020.DOI:10.48550/arXiv.2010.11876.
 
-[3] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
+[3] Xu T, Li Z, Yu Y. Error bounds of imitating policies and environments for reinforcement learning[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2021, 44(10): 6968-6980.
 
-[4] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
+[4] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
+
+[5] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
