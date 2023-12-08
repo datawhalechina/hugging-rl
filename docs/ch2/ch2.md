@@ -18,7 +18,7 @@ $$
 
  那么，对于数据集$\mathcal{D}$中$N$条专家轨迹，则有目标函数式(2.3)
 $$
-\max_\pi\sum_{h=1}^{H}\sum_{s_h,a_h\in \mathcal{D}}log\pi_h(a_h\vert s_h) \\
+\max_\pi\sum_{h=1}^{H}\sum_{s_h,a_h\in \mathcal{D}}log\pi_h(a_h\vert s_h) \\\\
 \operatorname{ s.t. } 
 \sum_a\pi_h(a|s)=1,\forall s\in S,h\in[H].\tag{2.3}
 $$
@@ -83,7 +83,7 @@ $$
 **定理2.3：** *在无交互场景下，对于智能体的策略$\pi^{BC}$，存在一个马尔科夫决策过程和确定型专家策略$\pi^E$，策略$\pi^{BC}$的下界为*
 $$
 \begin{equation}
-J(\pi^E)-E[J(\pi^{BC})] \ge min\\{H, \frac{\vert\mathcal{S}\vert H^2}{N}\\}
+J(\pi^E)-E[J(\pi^{BC})] \ge min\\{H, \frac{\vert\mathcal{S}\vert H^2}{N}\\}\tag{2.9}
 \end{equation}
 $$
 
