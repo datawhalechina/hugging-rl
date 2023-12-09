@@ -92,6 +92,8 @@ $$
 
 根据定理2.2和2.3可知，有限长度回合制马尔科夫决策过程下的行为克隆算法上下界均为$\hat{O}(\frac{\vert\mathcal{S}\vert H^2}{\epsilon})$，表明该算法为极小极大最优。
 
+根据文献[4]可知，在统计决策理论中，若利用算法从数据中估计一个确定型参数，那么一个评估该算法性能的标准是极小极大。若一个算法的最大风险是最小的，那么该算法为极大极小最优，对于行为克隆算法算法来说，就是上界与下界相吻合。
+
  
 
 ## 无限长度折扣MDP下的统计极限
@@ -138,6 +140,4 @@ $$
 
 [3] Xu T, Li Z, Yu Y. Error bounds of imitating policies and environments for reinforcement learning[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2021, 44(10): 6968-6980.
 
-[4] [Minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax)
-
-[5] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
+[4] [Minimax estimator - Wikipedia](https://en.wikipedia.org/wiki/Minimax_estimator)
