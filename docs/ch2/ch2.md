@@ -50,7 +50,7 @@ $$
 *引理2.1 在无交互场景下，专家策略$\pi^{E}$为确定型时，对于行为克隆算法的任何策略$\pi^{BC}$与专家策略不一致的概率有界于$min\{1,\frac{\vert\mathcal{S}\vert}{N}\}$，即式(2.6)*
 $$
 \begin{equation}
-\mathbb{E}[\frac{1}{H}\sum_{t=1}^{H}\mathbb{E}\_{s_t\sim f^t_{\pi^{E}}}[\mathbb{E}\_{a\sim\pi_t^{BC}(.\vert s_t)}[\mathbb{I}(a\neq\pi_t^{E}(s_t))]]]\le min\\{1,\frac{\vert\mathcal{S}\vert}{N}\\}\tag{2.6}
+\mathbb{E}[\frac{1}{H}\sum_{t=1}^{H}\mathbb{E}\_{s_t\sim f^t_{\pi^{E}}}[\mathbb{E}\_{a\sim\pi_t^{BC}(.\vert s_t)}[\mathbb{I}(a\neq\pi_t^{E}(s_t))]]]\overset{\prec}{\sim} min\\{1,\frac{\vert\mathcal{S}\vert}{N}\\}\tag{2.6}
 \end{equation}
 $$
 策略$\hat{\pi}$与专家策略不一致概率，主要是在专家策略下不会产生的状态，即BC算法不会学习到的策略，因此不一致概率有界于$\frac{\vert\mathcal{S}\vert}{N}$。
@@ -63,14 +63,14 @@ $$
 
 $$
 \begin{equation}
-J(\pi^E)-\mathbb{E}[J(\pi^{BC})]\le min\\{H,\frac{\vert\mathcal{S}\vert H^2}{N}\\} \tag{2.7}
+J(\pi^E)-\mathbb{E}[J(\pi^{BC})]\overset{\prec}{\sim} min\\{H,\frac{\vert\mathcal{S}\vert H^2}{N}\\} \tag{2.7}
 \end{equation}
 $$
 - *对于任何$\delta\in(0,min\{1,\frac{H}{10}\})$，以$1-\delta$的概率误差有界于*
 
 $$
 \begin{equation}
-J(\pi^E)-J(\pi^{BC})\le\frac{\vert\mathcal{S}\vert H^2}{N}+\frac{\sqrt{\vert\mathcal{S}\vert}H^2log(\frac{H}{\delta})}{N}\tag{2.8}
+J(\pi^E)-J(\pi^{BC})\overset{\prec}{\sim}\frac{\vert\mathcal{S}\vert H^2}{N}+\frac{\sqrt{\vert\mathcal{S}\vert}H^2log(\frac{H}{\delta})}{N}\tag{2.8}
 \end{equation}
 $$
 
@@ -83,7 +83,7 @@ $$
 **定理2.3：** *在无交互场景下，对于智能体的策略$\pi^{BC}$，存在一个马尔科夫决策过程和确定型专家策略$\pi^E$，策略$\pi^{BC}$的下界为*
 $$
 \begin{equation}
-J(\pi^E)-E[J(\pi^{BC})] \ge min\\{H, \frac{\vert\mathcal{S}\vert H^2}{N}\\}\tag{2.9}
+J(\pi^E)-E[J(\pi^{BC})] \overset{\succ}{\sim} min\\{H, \frac{\vert\mathcal{S}\vert H^2}{N}\\}\tag{2.9}
 \end{equation}
 $$
 
@@ -111,7 +111,7 @@ $$
 *那么，BC算法误差上界为*
 $$
 \begin{equation}
-V_{\pi_{E}}-V_{\pi_{BC}}\le\frac{2\sqrt{2}R_{max}}{(1-\gamma^{2})}\sqrt{\epsilon}\tag{2.11}
+V_{\pi_{E}}-V_{\pi_{BC}}\overset{\prec}{\sim}\frac{2\sqrt{2}R_{max}}{(1-\gamma^{2})}\sqrt{\epsilon}\tag{2.11}
 \end{equation}
 $$
 
@@ -123,7 +123,7 @@ $$
 **命题2.1:** 给定专家数据$D=\{(s_{\pi_E}^{i},a_{\pi_E}^i)\}\_{i=1}^m$，对于任何算法$Alg: D\to \pi$，存在一个MDP $\mathcal{M}$和专家策略$\pi_E$，有
 $$
 \begin{equation}
-V^{\mathcal{M}}\_{\pi_E}-V^{\mathcal{M}}\_{\pi}\ge(\frac{1}{1-\gamma},\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)m})\tag{2.12}
+V^{\mathcal{M}}\_{\pi_E}-V^{\mathcal{M}}\_{\pi}\overset{\succ}{\sim}(\frac{1}{1-\gamma},\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)m})\tag{2.12}
 \end{equation}
 $$
 根据定理2.4和命题2.1可知，无限长度折扣马尔科夫决策过程下的行为克隆算法上下界均为$\hat{O}(\frac{\vert\mathcal{S}\vert}{(1-\gamma^2)\epsilon})$，即表明行为克隆算法在环境转移概率未知的设定下，是极小极大最优算法。
