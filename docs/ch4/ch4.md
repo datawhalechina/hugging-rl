@@ -22,7 +22,7 @@ $$
 D_f(P\Vert Q)=\sum_x p(x)f(\frac{p(x)}{q(x)})\tag{4.2}
 \end{equation}
 $$
-根据函数$f-Divergence$的定义，函数$f$为凸函数$f:[0,+\infin)\to(-\infin,+\infin)$，且$f(1)=0$。常见的$KL-divergence,JS-divergence$，以及$TV$-距离均为$f-divergence$。
+根据函数$f-Divergence$的定义，函数$f$为凸函数$f:[0,+\infty)\to(-\infty,+\infty)$，且$f(1)=0$。常见的$KL-divergence,JS-divergence$，以及$TV$-距离均为$f-divergence$。
 
 若把$TV-距离$作为度量函数，那么目标函数(4.1)变为(4.3)
 $$
