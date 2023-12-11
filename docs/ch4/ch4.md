@@ -36,7 +36,7 @@ $$
 \min_{\pi\in\Pi}\sum_{h=1}^H D_{TV}(P_h^\pi,\hat{P}\_h^{\pi^E})=\frac{1}{2}\min\_{\pi\in\Pi}\max_{w\in\mathcal{W}}\sum_{(s,a,h)\in\mathcal{S}\times\mathcal{S}\times[\mathcal{H}]}w_{h(s,a)}(\hat{P}\_h^{\pi^E}(s,a)-P_h^{\pi}(s,a))\tag{4.4}
 \end{equation}
 $$
-式(4.4)中利用了$l1$范数的对偶范数，即$l_{\infin}$范数。根据，文献[[4]，可知$\mathcal{W}=\{w\in \mathbb{R}^{\vert\mathcal{S}\vert\times\vert\mathcal{A}\vert\times H}:\Vert w\Vert_{\infty}\le 1\}$。
+式(4.4)中利用了$l1$范数的对偶范数，即$l_{\infty}$范数。根据，文献[[4]，可知$\mathcal{W}=\{w\in \mathbb{R}^{\vert\mathcal{S}\vert\times\vert\mathcal{A}\vert\times H}:\Vert w\Vert_{\infty}\le 1\}$。
 
 那么，若把$w$看作奖励函数时，那么式(4.4)可变为式(4.5)
 $$
