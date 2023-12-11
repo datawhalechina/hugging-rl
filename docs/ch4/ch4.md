@@ -27,13 +27,13 @@ $$
 若把$TV-距离$作为度量函数，那么目标函数(4.1)变为(4.3)
 $$
 \begin{equation}
-\min_{\pi\in\Pi}\sum_{h=1}^HD_{TV}(P_h^{\pi},\hat{P}_h^{\pi^E})=\frac{1}{2}\min_{\pi\in\Pi}\sum_{h=1}^H\sum_{(s,a)\in \mathcal{s}\times\mathcal{A}}\vert P_h^{\pi}(s,a)-\hat{P}_h^{\pi^E}(s,a)\vert\tag{4.3}
+\min_{\pi\in\Pi}\sum_{h=1}^HD_{TV}(P_h^{\pi},\hat{P}\_h^{\pi^E})=\frac{1}{2}\min\_{\pi\in\Pi}\sum_{h=1}^H\sum_{(s,a)\in \mathcal{s}\times\mathcal{A}}\vert P_h^{\pi}(s,a)-\hat{P}_h^{\pi^E}(s,a)\vert\tag{4.3}
 \end{equation}
 $$
 若直接优化式(4.3)，那么考虑利用$TV$-距离的对偶函数，可得式(4.4)极小极大目标。
 $$
 \begin{equation}
-\min_{\pi\in\Pi}\sum_{h=1}^H D_{TV}(P_h^\pi,\hat{P}_h^{\pi^E})=\frac{1}{2}\min_{\pi\in\Pi}\max_{w\in\mathcal{W}}\sum_{(s,a,h)\in\mathcal{S}\times\mathcal{S}\times[\mathcal{H}]}w_{h(s,a)}(\hat{P}_h^{\pi^E}(s,a)-P_h^{\pi}(s,a))\tag{4.4}
+\min_{\pi\in\Pi}\sum_{h=1}^H D_{TV}(P_h^\pi,\hat{P}\_h^{\pi^E})=\frac{1}{2}\min\_{\pi\in\Pi}\max_{w\in\mathcal{W}}\sum_{(s,a,h)\in\mathcal{S}\times\mathcal{S}\times[\mathcal{H}]}w_{h(s,a)}(\hat{P}_h^{\pi^E}(s,a)-P_h^{\pi}(s,a))\tag{4.4}
 \end{equation}
 $$
 式(4.4)中利用了$l1$范数的对偶范数，即$l_{\infin}$范数。根据，文献[[4]，可知$\mathcal{W}=\{w\in \mathbb{R}^{\vert\mathcal{S}\vert\times\vert\mathcal{A}\vert\times H}:\Vert w\Vert_{\infin}\le 1\}$。
