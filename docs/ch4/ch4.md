@@ -16,7 +16,7 @@ $$
 
 ## 极小极大优化建模
 
-根据式(4.1)，可知，对抗式模仿学习的目标是最小化智能体策略分布与专家策略分布的距离。其中，$\psi$为距离度量函数。根据文献[2]，可知，两个分布之间距离的常见度量方式$f-divergence$，如式(4.2)。
+根据式(4.1)，可知，对抗式模仿学习的目标是最小化智能体策略分布与专家策略分布的距离。其中，$\psi$为距离度量函数。根据文献[1]，可知，两个分布之间距离的常见度量方式$f-divergence$，如式(4.2)。
 $$
 \begin{equation}
 D_f(P\Vert Q)=\sum_x p(x)f(\frac{p(x)}{q(x)})\tag{4.2}
@@ -36,7 +36,7 @@ $$
 \min_{\pi\in\Pi}\sum_{h=1}^H D_{TV}(P_h^\pi,\hat{P}\_h^{\pi^E})=\frac{1}{2}\min\_{\pi\in\Pi}\max_{w\in\mathcal{W}}\sum_{(s,a,h)\in\mathcal{S}\times\mathcal{S}\times[\mathcal{H}]}w_{h(s,a)}(\hat{P}\_h^{\pi^E}(s,a)-P_h^{\pi}(s,a))\tag{4.4}
 \end{equation}
 $$
-式(4.4)中利用了$l1$范数的对偶范数，即$l_{\infty}$范数。根据，文献[[4]，可知$\mathcal{W}=\{w\in \mathbb{R}^{\vert\mathcal{S}\vert\times\vert\mathcal{A}\vert\times H}:\Vert w\Vert_{\infty}\le 1\}$。
+式(4.4)中利用了$l1$范数的对偶范数，即$l_{\infty}$范数。根据文献[2]，可知$\mathcal{W}=\{w\in \mathbb{R}^{\vert\mathcal{S}\vert\times\vert\mathcal{A}\vert\times H}:\Vert w\Vert_{\infty}\le 1\}$。
 
 那么，若把$w$看作奖励函数时，那么式(4.4)可变为式(4.5)
 $$
@@ -52,16 +52,31 @@ $$
 
 ### 生成式对抗模仿学习
 
+根据文献[3]，可知，行为克隆算法样本效率较低；逆强化学习虽然样本效率高，但是需要较多的计算资源，扩展性较差，且不能够直接学习策略。正是以上原因，生成式对抗模仿学习由最大因果熵逆强化学习进化而来，其样本效率较高，且能够直接学习策略，绕过了IRL(Inverse Reinforcement Learning)的中间奖励函数学习阶段。
 
+为了描述生成式对抗模仿学习，先介绍一下最大化因果熵逆强化学习算法的目标函数，如式(4.6)。
+$$
+\begin{equation}
+maximize_{c\in\mathcal{C}}(\min_{\pi\in\Pi}-H(\pi)+\mathbb{E}_\pi[c(s,a)])-\mathbb{E}_{\pi_E}[c(s,a)]\tag{4.6}
+\end{equation}
+$$
+式(4.6)中$c(s,a)$为成本函数或奖励函数的负值。该式表明逆强化学习分为两步：
+
+1. 在给定成本函数下，最小化智能体策略下成本函数与因果熵的负值之后，寻找专家策略。
+2. 在给定策略下，最小化专家策略下的成本，寻找最优成本函数。
+
+根据文献[4]和[5]，可知，熵$H(\pi)$为了解决选择策略分布的不确定性，不仅约束了策略分布匹配特性期望，而且不会服从任何其它特殊分布。
 
 
 
 ## 参考文献
 
-[1] [1] Tai L , Zhang J , Liu M ,et al.Socially Compliant Navigation through Raw Depth Inputs with Generative Adversarial Imitation Learning[J].IEEE, 2017.DOI:10.48550/arXiv.1710.02543.
+[1] [F-divergence](https://en.wikipedia.org/wiki/F-divergence)
 
-[2] [F-divergence](https://en.wikipedia.org/wiki/F-divergence)
+[2] [Dual norm](https://en.wikipedia.org/w/index.php?title=Dual_norm&oldid=1029266114)
 
-[3] Ke L , Barnes M , Sun W ,et al.Imitation Learning as $f$-Divergence Minimization[J].  2019.DOI:10.48550/arXiv.1905.12888.
+[3] Ho J, Ermon S. Generative adversarial imitation learning[J]. Advances in neural information processing systems, 2016, 29.
 
-[4] [Dual norm](https://en.wikipedia.org/w/index.php?title=Dual_norm&oldid=1029266114)
+[4] Ziebart B D , Maas A L , Bagnell J A ,et al.Maximum Entropy Inverse Reinforcement Learning[C]//Proceedings of the Twenty-Third AAAI Conference on Artificial Intelligence, AAAI 2008, Chicago, Illinois, USA, July 13-17, 2008.2008.
+
+[5] Bloem M, Bambos N. Infinite time horizon maximum causal entropy inverse reinforcement learning[C]//53rd IEEE conference on decision and control. IEEE, 2014: 4911-4916.
