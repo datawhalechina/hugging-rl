@@ -57,7 +57,7 @@ $$
 为了描述生成式对抗模仿学习，先介绍一下最大化因果熵逆强化学习算法的目标函数，如式(4.6)。
 $$
 \begin{equation}
-maximize_{c\in\mathcal{C}}(\min_{\pi\in\Pi}-H(\pi)+\mathbb{E}_\pi[c(s,a)])-\mathbb{E}_{\pi_E}[c(s,a)]\tag{4.6}
+maximize_{c\in\mathcal{C}}(\min_{\pi\in\Pi}-H(\pi)+\mathbb{E}\_\pi[c(s,a)])-\mathbb{E}\_{\pi_E}[c(s,a)]\tag{4.6}
 \end{equation}
 $$
 式(4.6)中$c(s,a)$为成本函数或奖励函数的负值。该式表明逆强化学习分为两步：
