@@ -5,7 +5,7 @@
 逆强化学习算法有两个步骤，分别是学习出专家策略优于其它策略的奖励函数、基于强化学习获得智能体策略，这两步不断交替迭代，最终智能体策略收敛到专家策略，可见式(5.1)。
 $$
 \begin{equation}
-IRL_{\psi}(\pi_E)=argmax_{c\in\mathbb{R}^{\mathcal{S}\times\mathcal{A}}}-\psi(c)+(\min_{\pi\in\Pi}-H(\pi)+\mathbb{E}_{\pi}[c(s,a)])-\mathbb{E}\_{\pi_E}[c(s,a)]\tag{5.1}
+IRL_{\psi}(\pi_E)=argmax_{c\in\mathbb{R}^{\mathcal{S}\times\mathcal{A}}}-\psi(c)+(\min_{\pi\in\Pi}-H(\pi)+\mathbb{E}\_{\pi}[c(s,a)])-\mathbb{E}\_{\pi_E}[c(s,a)]\tag{5.1}
 \end{equation}
 $$
 学徒式学习基于极小极大优化建模的方式，在给定智能体策略下，最大化专家策略的奖励与智能体策略奖励的差；在给定奖励函数的情况下，最小化智能体策略奖励与专家策略奖励的差，可见式(5.2)。
