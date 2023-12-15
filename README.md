@@ -1,4 +1,4 @@
-# move-from-data
+# move-as-experts
 该项目旨在梳理模仿学习知识点，方便后续学习。
 
 
