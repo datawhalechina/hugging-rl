@@ -16,7 +16,7 @@ $$
 $$
 \begin{aligned}
 IRL_{\psi}(\pi_E)=arg\max_{c\in\mathbb{R}^{\mathcal{S}\times\mathcal{A}}}\min\_{\pi\in\Pi}-H(\pi)+\mathbb{E}\_{\pi}[c(s,a)]-\mathbb{E}\_{\pi\_{E}}[c(s,a)] \\\\
-IRL_{\psi}(\pi_E)=arg\max\_{c\in\mathbb{R}^{\mathcal{S}\times\mathcal{A}}}\min\_{\rho\in\mathcal{D}}-\bar{H}(\rho)+\sum\_{s,a}\rho(s,a)c(s,a)-\sum\_{s,a}\rho\_{E}(s,a)c(s,a)
+=arg\max\_{c\in\mathbb{R}^{\mathcal{S}\times\mathcal{A}}}\min\_{\rho\in\mathcal{D}}-\bar{H}(\rho)+\sum\_{s,a}\rho(s,a)c(s,a)-\sum\_{s,a}\rho\_{E}(s,a)c(s,a)
 \end{aligned}
 $$
 
