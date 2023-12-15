@@ -15,3 +15,9 @@
 | 第六章 环境模仿           |      |
 | 第七章 总结               |      |
 
+
+
+## 参考资料
+
+1. [模仿学习视频教程](https://www.bilibili.com/video/BV1RU4y167oA/?spm_id_from=333.999.0.0)
+
