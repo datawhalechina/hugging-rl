@@ -30,7 +30,49 @@
 
 ### Block Stacking任务的网络架构
 
+对于block stacking任务，策略网络应该具有以下特性：
 
+1. 应该很容易应对任务中变化的block数量。
+2. 对于同一任务的不同序列，很容易泛化。
+3. 应该能够容纳可变长度的演示。
+
+#### 周围的注意力
+
+
+
+
+
+#### 演示网络
+
+<div align="center"><img src="./img/demonstration_network.png" width=400, height=300 /></div>
+
+<div align=center>
+    图5.1 演示网络架构
+</div>
+
+其中， Temporal Dropout是时序丢弃，即演示序列中的一个frame按照概率选择是否丢弃，从而降低过长序列带来的时间和内存的消耗。在测试阶段，下采样多条轨迹，且利用多条轨迹的平均计算结果做为embedding。
+
+
+
+#### 上下文网络
+
+<div align="center"><img src="./img/context_network.png" width=400, height=300 /></div>
+
+<div align=center>
+    图5.2 上下文网络架构
+</div>
+
+上下文网络首先根据当前状态计算演示embedding的查询向量，被用于关注演示embedding中不同时间步的信息。对于不同block同一时间的注意力权重求和，形成一个权重。接下来，时序注意力输出与block数量成比例的embedding，再通过周围注意力传播每个block的embedding信息。这个过程会被持续多次，且利用带有untied weights的LSTM单元推进状态。最终，得到一个大小与演示序列长度无关但与block数量相关的embedding。
+
+接下来，再利用软注意力获取block的位置信息，产生一个固定大小的embedding。最后，位置信息向量与状态向量输入到操作网络。
+
+根据实验分析发现，整个上下文网络会根据当前状态从演示序列中寻找与之对应的状态，且推断与演示序列block对应的block。最后，再抽取不同block的位置信息。这一结果也与网络的设计思想一致。
+
+
+
+#### 操作网络
+
+操作网络直接把上下文embedding输入到MLP，预测完成当前阶段的行动。
 
 
 
