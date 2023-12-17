@@ -49,8 +49,8 @@ $$
 \begin{equation}
 result_i\leftarrow SoftAttention(\\
 \qquad query: q_i,\\
-\quad context: \{c_j\}_{j=1}^B \\
-\qquad memory:\{concat((x_i,y_i,z_i),h_j^{in})\}_{j=1}^B
+\quad context: \{c_j\}\_{j=1}^B \\
+\qquad memory:\{concat((x_i,y_i,z_i),h_j^{in})\}\_{j=1}^B
 )\tag{5.2}
 \end{equation}
 $$
