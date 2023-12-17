@@ -38,8 +38,32 @@
 
 #### 周围的注意力
 
-
-
+周围注意力机制的输入是每个block的embedding，用$h_i^{in}$表示，可以是由每个block位置投射运算形成的，也可以是之前周围注意力的输出。每个block向量$h_i^{in}$经过线性运算，得到查询向量$q_i$和上下文向量$c_i$，可见式(5.1)。
+$$
+\begin{equation}
+q_i\leftarrow Linear(h_i^{in})\qquad c_i\leftarrow Linear(h_i^{in})\tag{5.1}
+\end{equation}
+$$
+若每个block的位置用$(x_i,y_i,z_i)$表示，那么周围注意力的计算方法为
+$$
+result_i\leftarrow SoftAttention(\\\\
+\qquad query: q_i,\\\\
+\quad context: \{c_j\}_{j=1}^B \\\\
+\qquad memory:\{concat((x_i,y_i,z_i),h_j^{in})\}_{j=1}^B
+)\tag{5.2}
+$$
+每个查询向量$q_i$先计算与所有block的上下文向量$c_j$之间的权重信息，计算方式可见式(5.3)。
+$$
+\begin{equation}
+w_i\leftarrow v^T tanh(q+c_i)\tag{5.3}
+\end{equation}
+$$
+然后，再利用归一化后的权重信息，得到输出结果。
+$$
+\begin{equation}
+output\leftarrow \sum_im_i\frac{exp(w_i)}{\sum_jexp(w_j)}\tag{5.4}
+\end{equation}
+$$
 
 
 #### 演示网络
@@ -62,7 +86,7 @@
     图5.2 上下文网络架构
 </div>
 
-上下文网络首先根据当前状态计算演示embedding的查询向量，被用于关注演示embedding中不同时间步的信息。对于不同block同一时间的注意力权重求和，形成一个权重。接下来，时序注意力输出与block数量成比例的embedding，再通过周围注意力传播每个block的embedding信息。这个过程会被持续多次，且利用带有untied weights的LSTM单元推进状态。最终，得到一个大小与演示序列长度无关但与block数量相关的embedding。
+上下文网络首先根据当前状态计算演示embedding的查询向量，被用于关注演示embedding中不同时间步的信息。对同一时间不同block的注意力权重求和，形成一个权重向量。接下来，时序注意力输出与block数量成比例的embedding，再通过周围注意力传播每个block的embedding信息。这个过程会被持续多次，且利用带有untied weights的LSTM单元推进状态。最终，得到一个大小与演示序列长度无关但与block数量相关的embedding。
 
 接下来，再利用软注意力获取block的位置信息，产生一个固定大小的embedding。最后，位置信息向量与状态向量输入到操作网络。
 
