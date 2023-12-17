@@ -46,11 +46,13 @@ q_i\leftarrow Linear(h_i^{in})\qquad c_i\leftarrow Linear(h_i^{in})\tag{5.1}
 $$
 若每个block的位置用$(x_i,y_i,z_i)$表示，那么周围注意力的计算方法为
 $$
+\begin{equation}
 result_i\leftarrow SoftAttention(\\\\
 \qquad query: q_i,\\\\
 \quad context: \{c_j\}_{j=1}^B \\\\
 \qquad memory:\{concat((x_i,y_i,z_i),h_j^{in})\}_{j=1}^B
 )\tag{5.2}
+\end{equation}
 $$
 每个查询向量$q_i$先计算与所有block的上下文向量$c_j$之间的权重信息，计算方式可见式(5.3)。
 $$
