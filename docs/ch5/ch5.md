@@ -47,9 +47,9 @@ $$
 若每个block的位置用$(x_i,y_i,z_i)$表示，那么周围注意力的计算方法为
 $$
 \begin{equation}
-result_i\leftarrow SoftAttention(\\\\
-\qquad query: q_i,\\\\
-\quad context: \{c_j\}_{j=1}^B \\\\
+result_i\leftarrow SoftAttention(\\
+\qquad query: q_i,\\
+\quad context: \{c_j\}_{j=1}^B \\
 \qquad memory:\{concat((x_i,y_i,z_i),h_j^{in})\}_{j=1}^B
 )\tag{5.2}
 \end{equation}
