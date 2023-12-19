@@ -14,3 +14,10 @@ AlphaGo的诞生，见证了强化学习的威力。然而，在工业界，强�
 
 ## 模型评估方法
 
+
+
+
+
+## 参考文献
+
+[1] Prudencio R F, Maximo M R O A, Colombini E L. A survey on offline reinforcement learning: Taxonomy, review, and open problems[J]. IEEE Transactions on Neural Networks and Learning Systems, 2023.
