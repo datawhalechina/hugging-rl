@@ -3,13 +3,13 @@
 正则化是一个很好调节模型的工具。对于策略的正则化，策略梯度的目标函数可为式(4.1)。
 $$
 \begin{equation}
-J(\theta)=\mathbb{E}_{s,a\sim\mathcal{D}}[\mathcal{Q}^{\pi_{\theta}}(s,a)]+\mathcal{R}(\theta)\tag{3.1}
+J(\theta)=\mathbb{E}\_{s,a\sim\mathcal{D}}[\mathcal{Q}^{\pi\_{\theta}}(s,a)]+\mathcal{R}(\theta)\tag{3.1}
 \end{equation}
 $$
 对于值函数的正则化，目标函数可为式(4.2)。
 $$
 \begin{equation}
-J(\phi)=\mathbb{E}_{s,a,{s}'\sim\mathcal{D}}[(r(s,a)+\gamma\mathbb{E}_{{a}'\sim\pi_{off}(.\vert s)}[\mathcal{Q}_{\phi}^{\pi}({s}',{a}')]-\mathcal{Q}^{\pi}_{\phi}(s,a))^2]+\mathcal{R}(\phi)\tag{3.2}
+J(\phi)=\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(r(s,a)+\gamma\mathbb{E}\_{{a}'\sim\pi\_{off}(.\vert s)}[\mathcal{Q}\_{\phi}^{\pi}({s}',{a}')]-\mathcal{Q}^{\pi}\_{\phi}(s,a))^2]+\mathcal{R}(\phi)\tag{3.2}
 \end{equation}
 $$
 式(3.1)和(3.2)中$\mathcal{R}(\theta)$表示的是正则化项。
