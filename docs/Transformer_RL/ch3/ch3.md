@@ -1,0 +1,3 @@
+# Q-Transformer
+
+这篇论文的主要目的是把Transformer整合到offline RL系统中，使其可扩展到真实世界的多任务机器人学习。在把高容量的Transformer融入到RL领域时，有两大挑战，分别是需要巨大的数据量和高效训练的方法。对于数据量需求的挑战，该算法利用离线强化学习作为学习框架；对于模型的高效训练，对利用TD-Error估计Transformer建模的Q函数。

@@ -20,3 +20,16 @@ $$
 
 ## Conservative Q-Learning
 
+为了解决由智能体学到的策略$\pi$与数据产生的策略之间分布偏移产生的价值高估问题，CQL算法学习出保守型Q函数，使其成为Q函数真实值的下界。在理论上，证明了CQL的确产生了Q函数真实值的下界，且该算法可应用到策略学习步骤中。
+
+
+
+
+
+
+
+## 参考文献
+
+[1] Kumar A, Zhou A, Tucker G, et al. Conservative q-learning for offline reinforcement learning[J]. Advances in Neural Information Processing Systems, 2020, 33: 1179-1191.
+
+[2] Prudencio R F, Maximo M R O A, Colombini E L. A survey on offline reinforcement learning: Taxonomy, review, and open problems[J]. IEEE Transactions on Neural Networks and Learning Systems, 2023.

@@ -32,6 +32,16 @@
 
 
 
+### 特别篇
+
+| 章节                                   | 进度 |
+| -------------------------------------- | ---- |
+| 第一章 Decision Transformer            |      |
+| 第二章 Multi-Game Decision Transformer |      |
+| 第三章 Q-Transformer                   | 5%   |
+
+
+
 ## 参考资料
 
 1. [模仿学习视频教程](https://www.bilibili.com/video/BV1RU4y167oA/?spm_id_from=333.999.0.0)
