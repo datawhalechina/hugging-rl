@@ -24,11 +24,11 @@ $$
 
 为了公式的简洁性，利用$\mathcal{B}^*Q(s,a)$表示贝尔曼最优运算，可见式(4.3)
 $$
-\mathcal{B}^*Q(s,a)=r(s,a)+\gamma\mathbb{E}_{{s}'\sim P({s}'|s,a)}[max_{{a}'}Q({s}',{a}')]\tag{4.3}
+\mathcal{B}^*Q(s,a)=r(s,a)+\gamma\mathbb{E}\_{{s}'\sim P({s}'|s,a)}[max\_{{a}'}Q({s}',{a}')]\tag{4.3}
 $$
 利用$\mathcal{B}^{\pi}Q$表示策略$\pi$下的贝尔曼运算，可见式(4.4)
 $$
-\mathcal{B}^{\pi}Q=r + \gamma \mathbb{E}_{{s}'\sim T({s}'\vert s,a),{a}'\sim\pi({a}'\vert{s}')}Q({s}',{a}')\tag{4.4}
+\mathcal{B}^{\pi}Q=r + \gamma \mathbb{E}\_{{s}'\sim T({s}'\vert s,a),{a}'\sim\pi({a}'\vert{s}')}Q({s}',{a}')\tag{4.4}
 $$
 
 
