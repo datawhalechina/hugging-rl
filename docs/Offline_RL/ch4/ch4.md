@@ -49,13 +49,30 @@ $$
 \end{equation}
 $$
 
-
+根据文献[1]，可知，由式(4.6)产生的$\hat{Q}^{\pi}$不一定能够对于$\forall(s,a)$均为$Q^{\pi}$的下界。但是，$\hat{Q}^{\pi}$的均值一定为价值函数$V^{\pi}$的下界，可以理解为：若$\mu(a\vert s)=\pi(a\vert s)$成立，则$\mathbb{E}\_{\pi(a\vert s)}[\hat{Q}^{\pi}(s,a)]\le V^{\pi}(s)$。
 
 
 
 
 ### Conservative Q-Learning
 
+根据文献[1]，可知，求解式(4.6)可得策略$\pi$价值的下界。若利用式(4.6)作为策略的评估可得$\hat{Q}^{\pi}$，然后再提升策略，不断交替迭代以上两个步骤，那么就可得$V^{\pi}$的下界。或者利用式(4.6)作为策略评估可得$\hat{Q}^{\pi}$，再最大化$\hat{Q}^{\pi}$获得策略$\pi$，不断迭代也能得到策略价值的下界。然而，以上两种方式均是线上学习，分别是actor-critic和q-learning。
+
+为了使离线强化学习等价于在线学习，定义一类关于$\mu(a\vert s)$的优化问题，可见式(4.7)。这类优化问题的实例可被称为$CQL(\mathcal{R})$。
+$$
+\begin{equation}
+\underset{Q}{min}\underset{\mu}{max}\quad\alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)])
++ \frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k(s,a))^2]+\mathcal{R}(\mu)\tag{4.7}
+\end{equation}
+$$
+式(4.7)中$\mathcal{R}(\mu)$为正则化器。
+
+**CQL的变体：**若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，那么$CQL(\mathcal{R})$可被实例化为式(4.8)
+$$
+\begin{equation}
+\underset{Q}{min}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D}}[log\sum_a exp(Q(s,a))-\mathbb{E}\_{a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]]+\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k)^2]\tag{4.8}
+\end{equation}
+$$
 
 
 
