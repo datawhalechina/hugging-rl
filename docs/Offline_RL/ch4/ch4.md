@@ -54,7 +54,7 @@ $$
 
 
 
-### Conservative Q-Learning
+### Conservative Q-Learning算法
 
 根据文献[1]，可知，求解式(4.6)可得策略$\pi$价值的下界。若利用式(4.6)作为策略的评估可得$\hat{Q}^{\pi}$，然后再提升策略，不断交替迭代以上两个步骤，那么就可得$V^{\pi}$的下界。或者利用式(4.6)作为策略评估可得$\hat{Q}^{\pi}$，再最大化$\hat{Q}^{\pi}$获得策略$\pi$，不断迭代也能得到策略价值的下界。然而，以上两种方式均是线上学习，分别是actor-critic和q-learning。
 
@@ -66,23 +66,23 @@ $$
 $$
 式(4.7)中$\mathcal{R}(\mu)$为正则化器。
 
-**CQL的变体：** 若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，那么$CQL(\mathcal{R})$可被实例化为式(4.8)
+**CQL的变体：** 若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，且先验分布为均匀分布，那么$CQL(\mathcal{R})$可被实例化为式(4.8)。
 $$
 \begin{equation}
 \underset{Q}{min}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D}}[log\sum_a exp(Q(s,a))-\mathbb{E}\_{a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]]+\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k)^2]\tag{4.8}
 \end{equation}
 $$
 
-
+若先验分布为之前策略$\hat{\pi}^{k-1}$，那么式(4.8)中第一项应该被替换为策略$\hat{\pi}^{k-1}(a\vert s)$下Q值的指数权重平均。
 
 
 <div align="center">
   <img src="./img/CQL.png" width=600 />
 </div>
-
 <div align="center">
-  图4.1 CQL算法伪代码
+  图4.1 CQL算法两种变体的伪代码
 </div>
+
 
 
 
