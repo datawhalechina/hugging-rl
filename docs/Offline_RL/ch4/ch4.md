@@ -61,13 +61,12 @@ $$
 为了使离线强化学习等价于在线学习，定义一类关于$\mu(a\vert s)$的优化问题，可见式(4.7)。这类优化问题的实例可被称为$CQL(\mathcal{R})$。
 $$
 \begin{equation}
-\underset{Q}{min}\underset{\mu}{max}\quad\alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)])
-+ \frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k(s,a))^2]+\mathcal{R}(\mu)\tag{4.7}
+\underset{Q}{min}\underset{\mu}{max}\quad\alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]) + \frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k(s,a))^2]+\mathcal{R}(\mu)\tag{4.7}
 \end{equation}
 $$
 式(4.7)中$\mathcal{R}(\mu)$为正则化器。
 
-**CQL的变体：**若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，那么$CQL(\mathcal{R})$可被实例化为式(4.8)
+**CQL的变体：** 若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，那么$CQL(\mathcal{R})$可被实例化为式(4.8)
 $$
 \begin{equation}
 \underset{Q}{min}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D}}[log\sum_a exp(Q(s,a))-\mathbb{E}\_{a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]]+\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k)^2]\tag{4.8}
