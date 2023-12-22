@@ -31,6 +31,7 @@ $$
 \mathcal{B}^{\pi}Q=r + \gamma \mathbb{E}\_{{s}'\sim T({s}'\vert s,a),{a}'\sim\pi({a}'\vert{s}')}Q({s}',{a}')\tag{4.4}
 $$
 
+同时，在CQL中行为策略$\pi_{\beta}$为数据统计的结果，计算公式为$\hat{\pi}_{\beta}:=\frac{\sum_{s,a\in\mathcal{D}}1[s=s,a=a]}{\sum_{s\in\mathcal{D}}1[s=s]}$
 
 ### Conservative Off-Policy Evaluation
 
