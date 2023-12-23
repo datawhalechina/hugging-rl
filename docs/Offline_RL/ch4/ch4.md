@@ -54,7 +54,7 @@ $$
 该算法的另一个视角是：若把式(4.5)视作贝尔曼最优约束，那么损失函数(4.4)可视为包含不同混合概率分布的无穷数量贝尔曼约束。
 $$
 \begin{equation}
-Q^{*}(s,a)=\mathbb{E}R(s,a)+\gamma\mathbb{E}\_{{s}'\sim P}\underset{{a'\in\mathcal{A}}}{max}Q^{*}({s}',{a}')\tag{4.5}
+Q^{\*}(s,a)=\mathbb{E}R(s,a)+\gamma\mathbb{E}\_{{s}'\sim P}\underset{{a'\in\mathcal{A}}}{max}Q^{\*}({s}',{a}')\tag{4.5}
 \end{equation}
 $$
 
