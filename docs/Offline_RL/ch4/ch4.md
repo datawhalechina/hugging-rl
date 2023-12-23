@@ -28,12 +28,12 @@ $$
 
 通俗来讲，$K$个不同参数初始化的$DQN$，利用同一批次的数据学习，其损失函数为
 $$
-\mathcal{L}(\theta)=\frac{1}{K}\sum_{k=1}^K\mathbb{E}_{s,a,r,{s}'\sim\mathcal{D}}[\mathcal{l}_{\lambda}(\Delta_{\theta}^k(s,a,r,{s}'))] \\\\
-\Delta_{\theta}^k(s,a,r,{s}')=Q_{\theta}^k(s,a)-r-\gamma\underset{{a}'}{max}Q^k_{{\theta}'}({s}',{a}')\tag{4.2}
+\mathcal{L}(\theta)=\frac{1}{K}\sum\_{k=1}^K\mathbb{E}\_{s,a,r,{s}'\sim\mathcal{D}}[\mathcal{l}\_{\lambda}(\Delta\_{\theta}^k(s,a,r,{s}'))] \\\\
+\Delta\_{\theta}^k(s,a,r,{s}')=Q\_{\theta}^k(s,a)-r-\gamma\underset{{a}'}{max}Q^k\_{{\theta}'}({s}',{a}')\tag{4.2}
 $$
-式(4.2)中$l_{\lambda}$为Huber损失，可见式(4.3)
+式(4.2)中$l\_{\lambda}$为Huber损失，可见式(4.3)
 $$
-l_{\lambda}(u)=\begin{cases}
+l\_{\lambda}(u)=\begin{cases}
 \frac{1}{2}u^2,if\vert u\vert\le\lambda\\
 \lambda(\vert u\vert-\frac{1}{2}\lambda),otherwise
 \end{cases}\tag{4.3}
@@ -44,17 +44,17 @@ $$
 
 REM算法背后的思想是以一种计算高效的方式集成指数量级数量的$Q$函数估计。与Ensemble DQN相似，该算法也利用$K$个$Q$函数估计$Q$值。利用该$K$个$Q$函数的凸组合作为$Q$值的估计值，即$K-1$单纯形，其损失函数为
 $$
-\mathcal{L}(\theta)=\mathbb{E}_{s,a,r,{s}'\sim\mathcal{D}}[\mathbb{E}_{\alpha\sim P_{\Delta}}[\mathcal{l}_{\lambda}(\Delta_{\theta}^\alpha(s,a,r,{s}'))]] \\\\
-\Delta_{\theta}^{\alpha}(s,a,r,{s}')=\sum_{k}\alpha_k Q_{\theta}^k(s,a)-r-\gamma\underset{{a}'}{max}\sum_k\alpha_k Q^k_{{\theta}'}({s}',{a}')\tag{4.4}
+\mathcal{L}(\theta)=\mathbb{E}\_{s,a,r,{s}'\sim\mathcal{D}}[\mathbb{E}\_{\alpha\sim P\_{\Delta}}[\mathcal{l}\_{\lambda}(\Delta\_{\theta}^\alpha(s,a,r,{s}'))]] \\\\
+\Delta\_{\theta}^{\alpha}(s,a,r,{s}')=\sum\_{k}\alpha\_k Q\_{\theta}^k(s,a)-r-\gamma\underset{{a}'}{max}\sum\_k\alpha\_k Q^k\_{{\theta}'}({s}',{a}')\tag{4.4}
 $$
-式(4.4)中$P_{\Delta}$表示$Q$函数$K-1$单纯形$\Delta^{k-1}=\{\alpha\in\mathbb{R}^K:\alpha_1+\alpha_2+\cdots+\alpha_K=1,\alpha_k\ge0,k=1,\ldots,K\}$的概率分布。
+式(4.4)中$P_{\Delta}$表示$Q$函数$K-1$单纯形$\Delta^{k-1}=\{\alpha\in\mathbb{R}^K:\alpha\_1+\alpha_2+\cdots+\alpha\_K=1,\alpha\_k\ge0,k=1,\ldots,K\}$的概率分布。
 
-在文献[3]中，直接利用均匀分布表示$P_{\Delta}\sim U(0,1)$ ，也即从均匀分布$U(0,1)$采样${\alpha}'_k$，然后再归一化$\alpha_k=\frac{{\alpha}'_k}{\sum{\alpha}'_i}$。
+在文献[3]中，直接利用均匀分布表示$P\_{\Delta}\sim U(0,1)$ ，也即从均匀分布$U(0,1)$采样${\alpha}'\_k$，然后再归一化$\alpha\_k=\frac{{\alpha}'\_k}{\sum{\alpha}'\_i}$。
 
 该算法的另一个视角是：若把式(4.5)视作贝尔曼最优约束，那么损失函数(4.4)可视为包含不同混合概率分布的无穷数量贝尔曼约束。
 $$
 \begin{equation}
-Q^{*}(s,a)=\mathbb{E}R(s,a)+\gamma\mathbb{E}_{{s}'\sim P}\underset{{a'\in\mathcal{A}}}{max}Q^{*}({s}',{a}')\tag{4.5}
+Q^{*}(s,a)=\mathbb{E}R(s,a)+\gamma\mathbb{E}\_{{s}'\sim P}\underset{{a'\in\mathcal{A}}}{max}Q^{*}({s}',{a}')\tag{4.5}
 \end{equation}
 $$
 
