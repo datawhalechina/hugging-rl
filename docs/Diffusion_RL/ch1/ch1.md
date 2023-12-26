@@ -22,7 +22,7 @@ $$
 其中，联合分布$p\_{\theta}(\mathbf{x}\_{0:T})$为逆过程。逆过程中马尔科夫链之间的转换函数$p\_{\theta}(\mathbf{x}\_t)$为高斯分布。若起始点$T$的分布函数为$p(\mathbf{x}\_T)=\mathcal{N}(\mathbf{x}\_T;0,\mathbf{I})$，那么
 $$
 \begin{equation}
-p\_{\theta}(\mathbf{x}\_{0:T}):=p(\mathbf{x}\_T)\prod\_{t=1}^Tp\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t),\qquad p\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t):=\mathcal{N}(\mathbf{x}_{t-1};\mu\_{\theta}(\mathbf{x}\_{t-1},t),\Sigma_{\theta}(\mathbf{x}\_t,t))\tag{1.2}
+p\_{\theta}(\mathbf{x}\_{0:T}):=p(\mathbf{x}\_T)\prod\_{t=1}^Tp\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t),\qquad p\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t):=\mathcal{N}(\mathbf{x}\_{t-1};\mu\_{\theta}(\mathbf{x}\_{t-1},t),\Sigma\_{\theta}(\mathbf{x}\_t,t))\tag{1.2}
 \end{equation}
 $$
 与其它隐变量不同，扩散模型的近似后验$q(\mathbf{x}\_{1:T}\vert\mathbf{x}\_0)$，被称为前向过程或扩散过程，是一个固定的马尔科夫链。扩散过程是一个向数据中按照方差为$\beta\_1,\dots,\beta\_{T}$顺序不断增加高斯噪音的过程。
@@ -37,22 +37,22 @@ $$
 \mathbb{E}[-log{p\_{\theta}(\mathbf{x}\_0)}]\le\mathbb{E}\_q[-log\frac{p\_{\theta}(\mathbf{x}\_{0:T})}{q(\mathbf{x}\_{1:T}\vert \mathbf{x}\_0)}]=\mathbb{E}\_q[-log{p(\mathbf{x}\_T)}-\sum\_{t\ge1}log\frac{p\_{\theta(\mathbf{x}\_{t-1}\vert x\_t)}}{q(\mathbf{x}\_t\vert x\_{t-1})}=:L\tag{1.4}
 \end{equation}
 $$
-前向过程中方差$\beta_t$可以是被学习出来的，也可以是一个常数。若$\alpha_t:=1-\beta_t,\quad\bar{\alpha}_t:=\prod_{s=1}^t\alpha_s$，那么前向过程中任意时间步$t$的$\mathbf{x}_t$均可在$x_0$条件下表示
+前向过程中方差$\beta\_t$可以是被学习出来的，也可以是一个常数。若$\alpha\_t:=1-\beta\_t,\quad\bar{\alpha}\_t:=\prod\_{s=1}^t\alpha\_s$，那么前向过程中任意时间步$t$的$\mathbf{x}\_t$均可在$x\_0$条件下表示
 $$
 \begin{equation}
-q(\mathbf{x}\_t\vert\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_t;\sqrt{\bar{\alpha}\_t}\mathbf{x}_0,(1-\bar{\alpha}\_t)\mathbf{I})\tag{1.5}
+q(\mathbf{x}\_t\vert\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_t;\sqrt{\bar{\alpha}\_t}\mathbf{x}\_0,(1-\bar{\alpha}\_t)\mathbf{I})\tag{1.5}
 \end{equation}
 $$
 根据文献[2]，可知，若要进一步提升，就是降低损失函数的方差，那么损失函数可被写为
 $$
 \begin{equation}
-\mathbb{E}\_q[\underbrace{D_{KL}(q(\mathbf{x}\_T\vert\mathbf{x}\_0)\Vert p(\mathbf{x}\_T))}\_{L_T}+\sum_{t\gt1}\underbrace{D_{KL}(q(\mathbf{x}_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)\Vert p_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t))}_{L_{t-1}}-\underbrace{log{p_{\theta}(\mathbf{x}\_0\vert\mathbf{x}\_1)}}_{L_0}]\tag{1.6}
+\mathbb{E}\_q[\underbrace{D\_{KL}(q(\mathbf{x}\_T\vert\mathbf{x}\_0)\Vert p(\mathbf{x}\_T))}\_{L_T}+\sum\_{t\gt1}\underbrace{D\_{KL}(q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)\Vert p\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t))}\_{L\_{t-1}}-\underbrace{log{p\_{\theta}(\mathbf{x}\_0\vert\mathbf{x}\_1)}}\_{L\_0}]\tag{1.6}
 \end{equation}
 $$
 式(1.6)直接利用KL-Divergence比较$p_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t)$与前向过程的后验比较。在条件$\mathbf{x}_0$下前向过程后验是可计算的
 $$
-q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_{t-1};\tilde{\mu}_t(\mathbf{x}\_t,\mathbf{x}\_0),\tilde{\beta}_t\mathbf{I}),\\\\
-where\quad\tilde{\mu}_t(\mathbf{x}\_t,\mathbf{x}\_0):=\frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}\_0+\frac{\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-\bar{\alpha}_t}\mathbf{x}_t\quad and\quad\tilde{\beta}_t:=\frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t\tag{1.7}
+q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_{t-1};\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0),\tilde{\beta}\_t\mathbf{I}),\\\\
+where\quad\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0):=\frac{\sqrt{\bar{\alpha}\_{t-1}}\beta\_t}{1-\bar{\alpha}\_t}\mathbf{x}\_0+\frac{\sqrt{\alpha\_t}(1-\bar{\alpha}\_{t-1})}{1-\bar{\alpha}\_t}\mathbf{x}\_t\quad and\quad\tilde{\beta}\_t:=\frac{1-\bar{\alpha}\_{t-1}}{1-\bar{\alpha}\_t}\beta\_t\tag{1.7}
 $$
 
 
