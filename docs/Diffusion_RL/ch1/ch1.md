@@ -54,6 +54,22 @@ $$
 q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_{t-1};\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0),\tilde{\beta}\_t\mathbf{I}),\\\\
 where\quad\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0):=\frac{\sqrt{\bar{\alpha}\_{t-1}}\beta\_t}{1-\bar{\alpha}\_t}\mathbf{x}\_0+\frac{\sqrt{\alpha\_t}(1-\bar{\alpha}\_{t-1})}{1-\bar{\alpha}\_t}\mathbf{x}\_t\quad and\quad\tilde{\beta}\_t:=\frac{1-\bar{\alpha}\_{t-1}}{1-\bar{\alpha}\_t}\beta\_t\tag{1.7}
 $$
+根据式(1.7)，可知，式(1.6)中所有KL-Divergence均是高斯分布之间的比较。接下来，理解式(1.6)中三个部分及其计算方法。
+
+### 前向过程与$L\_T$
+
+在文献[2]中并未对方差$\beta_t$参数化，而是把它当作常数对待。因此，$q(\mathbf{x}\_T\vert\mathbf{x}\_0)$与$p(\mathbf{x}\_T)$中无参数需要学习，即$L_T$为常数项。
+
+
+
+### 逆过程与$L\_{1:T-1}$
+
+
+
+
+
+### 逆过程解码与$L\_0$
+
 
 
 
