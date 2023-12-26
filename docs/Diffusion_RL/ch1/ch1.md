@@ -115,6 +115,15 @@ x-\frac{1}{255} & if \quad x \gt -1
 \end{cases}\tag{1.12}
 $$
 
+<div align="center">
+  <img src="./img/ddpm.png" />
+</div>
+<div align="center">
+  图1.2 DDPM的伪代码
+</div>
+
+根据图1.2，可知，只需训练一个与时间$t$依赖的噪声近似模型$\epsilon\_{\theta}$，即可得到扩散模型。
+
 
 
 
