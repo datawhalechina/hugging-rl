@@ -51,7 +51,7 @@ $$
 $$
 式(1.6)直接利用KL-Divergence比较$p_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t)$与前向过程的后验比较。在条件$\mathbf{x}_0$下前向过程后验是可计算的
 $$
-q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_{t-1};\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0),\tilde{\beta}\_t\mathbf{I}),\\\\
+q(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t,\mathbf{x}\_0)=\mathcal{N}(\mathbf{x}\_{t-1};\tilde{\mathbf{\mu}}\_t(\mathbf{x}\_t,\mathbf{x}\_0),\tilde{\beta}\_t\mathbf{I}),\\\\
 where\quad\tilde{\mu}\_t(\mathbf{x}\_t,\mathbf{x}\_0):=\frac{\sqrt{\bar{\alpha}\_{t-1}}\beta\_t}{1-\bar{\alpha}\_t}\mathbf{x}\_0+\frac{\sqrt{\alpha\_t}(1-\bar{\alpha}\_{t-1})}{1-\bar{\alpha}\_t}\mathbf{x}\_t\quad and\quad\tilde{\beta}\_t:=\frac{1-\bar{\alpha}\_{t-1}}{1-\bar{\alpha}\_t}\beta\_t\tag{1.7}
 $$
 根据式(1.7)，可知，式(1.6)中所有KL-Divergence均是高斯分布之间的比较。接下来，理解式(1.6)中三个部分及其计算方法。
@@ -64,12 +64,56 @@ $$
 
 ### 逆过程与$L\_{1:T-1}$
 
+逆过程中转换函数$p\_{\theta}(\mathbf{x}\_{t-1}\vert\mathbf{x}\_t)=\mathcal{N}(\mathbf{x}\_{t-1};\mu\_{\theta}(\mathbf{x}\_t,t),\Sigma\_{\theta}(\mathbf{x}\_t,t))$
 
+正态分布中方差$\Sigma\_{\theta}(\mathbf{x}\_t,t)=\sigma\_t^2\mathbf{I}$被设定为常数。若$\mathbf{x}\_0\sim\mathcal{N}(0,1)$，那么$\sigma\_t^2=\beta\_t$为最优；若$\mathbf{x}\_0$为确定型，那么$\sigma\_t^2=\tilde{\beta}\_t=\frac{1-\bar{\alpha}\_{t-1}}{1-\bar{\alpha}\_t}\beta\_t$为最优。然而，以上两种方差设定方式有相似的结果。
+
+正态分布中均值$\mu_{\theta}(\mathbf{x}_t,t)$是参数化项，那么最直接的方式是预测前向过程后验的均值，即
+$$
+\begin{equation}
+L_{t-1}=\mathbb{E}_q[\frac{1}{2\sigma_t^2}\Vert\tilde{\mu}_t(\mathbf{x}_t,\mathbf{x}_0)-\mu_{\theta}(\mathbf{x}_t,t)\Vert^2]+C\tag{1.8}
+\end{equation}
+$$
+接下来，介绍均值的第二种参数化方法，也文献[2]重要工作
+
+若$\mathbf{x}_t(\mathbf{x}_0,\mathbf{\epsilon})=\sqrt{\bar{\alpha}_t}\mathbf{x}_0+\sqrt{1-\bar{\alpha}_t}\epsilon$且$\epsilon\sim\mathcal{N}(0,\mathbf{I})$，那么
+$$
+\begin{aligned}
+L_{t-1}-C &= \mathbb{E}_{\mathbf{x}_{0},\epsilon}[\frac{1}{2\sigma^2_t}\Vert\tilde{\mu}_t(\mathbf{x}_t(\mathbf{x}_0,\epsilon),\frac{1}{\sqrt{\bar{\alpha}}_t}(\mathbf{x}_t(\mathbf{x}_0,\epsilon)-\sqrt{1-\bar{\alpha}_t}\epsilon))-\mu_{\theta}(\mathbf{x}_t(\mathbf{x}_0,\epsilon),t)\Vert^2] \\\\
+&=\mathbb{E}_{\mathbf{x}_0,\epsilon}[\frac{1}{2\sigma_t^2}\Vert\frac{1}{\sqrt{\alpha_t}}(\mathbf{x}_t(\mathbf{x}_0,\epsilon)-\frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon)-\mu_{\theta}(\mathbf{x}_t(\mathbf{x}_0,\epsilon),t)\Vert^2]
+\end{aligned}\tag{1.9}
+$$
+可知，在给定$\mathbf{x}_t$下，$\mu_{\theta}$预测$\frac{1}{\sqrt{\alpha_t}}(\mathbf{x}_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}}_t}\epsilon)$，那么
+$$
+\begin{equation}
+\mu_{\theta}(\mathbf{x}_t,t)=\tilde{\mu}_t(\mathbf{x}_t,\frac{1}{\sqrt{\bar{\alpha}_T}}(\mathbf{x}_t-\sqrt{1-\bar{\alpha}_t}\epsilon_{\theta}(\mathbf{x}_t)))=\frac{1}{\sqrt{\alpha_t}}(\mathbf{x}_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}}_t}\epsilon_{\theta}(\mathbf{x}_t,t))\tag{1.10}
+\end{equation}
+$$
+式(1.10)中$\epsilon_{\theta}$是一个函数近似器。可以理解为不是直接参数化均值，而是参数化噪声。那么式(1.9)简化为
+$$
+\begin{equation}
+\mathbb{E}_{\mathbf{x}_0,\epsilon}[\frac{\beta_t^2}{2\sigma_t^2\alpha_t(1-\bar{\alpha}_t)}\Vert\epsilon-\epsilon_{\theta}(\sqrt{\bar{\alpha}_t}\mathbf{x}_0+\sqrt{1-\bar{\alpha}_t}\epsilon,t)\Vert^2]\tag{1.11}
+\end{equation}
+$$
+式(1.11)类似于每个时刻$t$的去噪匹配，即优化目标函数与去噪匹配相类似。
 
 
 
 ### 逆过程解码与$L\_0$
 
+假设图片数据由整数集$\{0,1,\ldots,255\}$构成，那么为了保证与模型输入$\mathbf{x}_T\sim\mathcal{N}(0,\mathbf{I})$一致，把线性缩放到到$[-1,1]$。为了使$L_0$项的输出为独立离散的，那么
+$$
+p_{\theta}(\mathbf{x}_0\vert\mathbf{x}_1)=\prod_{i=1}^{D}\int_{\delta-(x_0^i)}^{\delta+(x_0^i)}\mathcal{N}(x;\mu_{\theta}^i(\mathbf{x}_1,1),\sigma_1^2)dx \\\\
+\delta+(x)=\begin{cases}
+\infty & if\quad x=1 \\\\
+x+\frac{1}{255} & if \quad x \lt 1
+\end{cases}
+\qquad
+\delta-(x)=\begin{cases}
+-\infty & if\quad x=-1 \\\\
+x-\frac{1}{255} & if \quad x \gt -1
+\end{cases}\tag{1.12}
+$$
 
 
 
