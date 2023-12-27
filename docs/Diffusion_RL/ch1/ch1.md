@@ -1,13 +1,6 @@
 # 扩散模型基础
 
-扩散模型是一类概率生成模型，它通过注入噪声逐步破坏数据，然后学习其逆过程，以生成样本。目前，扩散模型的研究主要有三种方式：基于分数的生成模型[2,3] (Score-Based Generative Models,简称SGMs)、去噪扩散概率模型[4,5] (Denoising Diffusion Probabilistic Models, 简称DDPMs)、随机微分方程[6,7,8] (Stochastic Differential Equations,简称Score SDEs)。
-
-## SGMs
-
-
-
-
-
+扩散模型是一类概率生成模型，它通过注入噪声逐步破坏数据，然后学习其逆过程，以生成样本。目前，扩散模型的研究主要有三种方式：去噪扩散概率模型[2,3] (Denoising Diffusion Probabilistic Models, 简称DDPMs)、基于分数的生成模型[4,5] (Score-Based Generative Models,简称SGMs)、随机微分方程[6,7,8] (Stochastic Differential Equations,简称Score SDEs)。
 
 ## DDPMs
 
@@ -133,6 +126,59 @@ $$
 
 
 
+## SGMs
+
+根据文献[4]，可知，与基于似然方式的生成模型和生成式对抗模型不同，基于分数的生成模型不需要对抗训练，也不需要在训练时采样。首先，它需要近似高斯噪声扰动后数据梯度的分布函数；然后，利用Annealed Langevin Dynamics生成样本。接下来，利用数学语言描述基于分数的生成模型。
+
+假设从未知数据分布$p\_{data}(\mathbf{x})$采样得到独立同分布的数据集$\{\mathbf{x}\_i\in\mathbb{R}^D\}\_{i=1}^N$。同时，定义
+
+- 概率密度$p(\mathbf{x})$的分数为$\nabla\_{\mathbf{x}}log{p(\mathbf{x})}$
+- 分数网络$\mathbf{s}\_{\theta}:\mathbb{R}^D\to\mathbb{R}^D$是一个参数化的神经网络，用于近似$p\_{data}(\mathbf{x})$分数
+
+生成模型的目标是学习一个生成服从分布$p\_{data}(\mathbf{x})$的新样本，那么目标函数为
+$$
+\begin{equation}
+\frac{1}{2}\mathbb{E}\_{p\_{data}}[\Vert\mathbf{s}\_{\theta}(\mathbf{x}）-\nabla\_{\mathbf{x}}log{p\_{data}}(\mathbf{x})\Vert\_2^2]=\mathbb{E}\_{p\_{data}(\mathbf{x})}[tr(\nabla\_{\mathbf{x}}\mathbf{s}\_{\mathbf{\theta}}(\mathbf{x}))+\frac{1}{2}\Vert\mathbf{s}\_{\theta}(\mathbf{x})\Vert\_2^2]+CONSTANT\tag{1.13}
+\end{equation}
+$$
+式(1.13)中$\nabla\_{\mathbf{x}}\mathbf{s}\_{\theta}(\mathbf{x})$为$\mathbf{s}_{\mathbf{\theta}}(\mathbf{x})$的雅可比矩阵。然而，求解该目标函数会遇到以下挑战：
+
+- 由于雅可比矩阵迹计算复杂，分数匹配无法扩展到深度神经网络和高维数据。
+
+- 由于现实任务的数据往往处于低维流形，数据分布的梯度是未定义的。
+- 在数据分布密度低的区域，往往因数据不足造成估计不准确。
+- 若数据分布的两种模式被低维数据分布密度区域分开，Langevin Dynamics无法在有限时间内恢复两种模式的相对权重。
+
+为了解决雅可比矩阵计算复杂的问题，利用高斯分布梯度计算方便，对数据扰动。同时，数据扰动也能解决数据分布处于低维流形的问题，也减少了数据分布密度低的区域。为了解决Langevin Dynamics无法区分数据模式权重的问题，利用annealed Langevin Dynamics进行数据生成。
+
+若$\sigma_i$为高斯分布的方差，且集合$\{\sigma\_i\}\_{i=1}^L$中元素满足$\frac{\sigma\_1}{\sigma\_2}=\cdots=\frac{\sigma\_{L-1}}{\sigma\_L}\gt1$，那么扰动后的数据分布为$q\_{\sigma}(\mathbf{x})=\int p\_{data}(\mathbf{t})\mathcal{N}(\mathbf{x}\vert\mathbf{t},\sigma^2I)$。同时，为了应对以上挑战，$\sigma\_1$应足够的大，$\sigma\_L$应足够大。那么，分数网络应该估计数据扰动后分布的梯度，即$\forall\sigma\in\{\sigma\_i\}_{i=1}^L:\mathbf{s}\_{\theta}(\mathbf{x},\sigma)\approx\nabla\_{\mathbf{x}}log{q\_{\sigma}(\mathbf{x})}$。此时，$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)$称为Noise Conditional Score Network(NCSN)，目标函数为
+$$
+\begin{equation}
+l(\theta;\sigma)=\frac{1}{2}\mathbb{E}\_{p\_{data}(\mathbf{x})}\mathbb{E}\_{\tilde{x}\sim\mathcal{N}(\mathbf{x},\sigma^2 I)}[\Vert\mathbf{s}\_{\theta}(\tilde{\mathbf{x}},\sigma)+\frac{\tilde{\mathbf{x}}-\mathbf{x}}{\sigma^2}\Vert\_2^2]\tag{1.14}
+\end{equation}
+$$
+对于所有的$\sigma\_i$，损失函数为
+$$
+\begin{equation}
+\mathcal{L}(\mathbf{\theta};\{\sigma\_i\}\_{i=1}^L)=\frac{1}{L}\sum\_{i=1}^{L}\lambda(\sigma\_i)l(\mathbf{\theta};\sigma\_i)\tag{1.15}
+\end{equation}
+$$
+式(1.15)中$\lambda(\sigma\_i)=\sigma\_i^2$。以此为目标函数训练神经网络，就可以得到数据分布梯度的估计函数。
+
+根据分数估计函数，生成样本的Annealed Langevin dynamics算法伪代码如图1.3所示
+
+<div align="center">
+  <img src="./img/ald.png" height=300/>
+</div>
+<div align="center">
+  图1.3 Annealed Langevin dynamics算法伪代码
+</div>
+
+
+
+
+
+
 ## Score SDEs
 
 
@@ -145,13 +191,13 @@ $$
 
 [1] Yang L, Zhang Z, Song Y, et al. Diffusion models: A comprehensive survey of methods and applications[J]. ACM Computing Surveys, 2023, 56(4): 1-39.
 
-[2] Song Y, Ermon S. Generative modeling by estimating gradients of the data distribution[J]. Advances in neural information processing systems, 2019, 32.
+[2] Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in neural information processing systems, 2020, 33: 6840-6851.
 
-[3] Song Y, Ermon S. Improved techniques for training score-based generative models[J]. Advances in neural information processing systems, 2020, 33: 12438-12448.
+[3] Sohl-Dickstein J, Weiss E, Maheswaranathan N, et al. Deep unsupervised learning using nonequilibrium thermodynamics[C]//International conference on machine learning. PMLR, 2015: 2256-2265.
 
-[4] Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in neural information processing systems, 2020, 33: 6840-6851.
+[4] Song Y, Ermon S. Generative modeling by estimating gradients of the data distribution[J]. Advances in neural information processing systems, 2019, 32.
 
-[5] Sohl-Dickstein J, Weiss E, Maheswaranathan N, et al. Deep unsupervised learning using nonequilibrium thermodynamics[C]//International conference on machine learning. PMLR, 2015: 2256-2265.
+[5] Song Y, Ermon S. Improved techniques for training score-based generative models[J]. Advances in neural information processing systems, 2020, 33: 12438-12448.
 
 [6] Karras T, Aittala M, Aila T, et al. Elucidating the design space of diffusion-based generative models[J]. Advances in Neural Information Processing Systems, 2022, 35: 26565-26577.
 
