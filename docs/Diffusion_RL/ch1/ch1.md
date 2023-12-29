@@ -194,6 +194,20 @@ $$
 
 文献[4]中分数网络是以方差$\sigma$为条件的网络，那么对于无归一化的分数网络，其内存的需求与$L$呈现线性关系，这是不适用的。因此，$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)=\mathbf{s}\_{\theta}(\mathbf{x})/\sigma$是一种简单高效的替代方式，$\mathbf{s}\_{\theta}(\mathbf{x})$为无条件分数网络。
 
+### 退火朗之万动力学参数配置
+
+**命题1**：若令$\gamma=\frac{\sigma\_{i-1}}{\sigma\_{i}}$,$\alpha=\epsilon\cdot\frac{\sigma\_i^2}{\sigma\_L^2}$，利用算法1，生成数据满足$\mathbf{x}\_{T}\sim\mathcal{N}(0,s\_t^2\mathbf{I})$。其中
+$$
+\begin{equation}
+\frac{s_T^2}{\sigma\_i^2}=(1-\frac{\epsilon}{\sigma^2\_L})^{2T}(\gamma^2-\frac{2\epsilon}{\sigma\_L^2-\sigma\_L^2(1-\frac{\epsilon}{\sigma\_L^2})^2})+\frac{2\epsilon}{\sigma\_L^2-\sigma_L^2(1-\frac{\epsilon}{\sigma\_L^2})^2}\tag{1.17}
+\end{equation}
+$$
+根据式(1.17)，可知，$\forall i\in(1,T]$，$\frac{s^2\_T}{\sigma\_i^2}$相等。
+
+若期望$\frac{s^2\_T}{\sigma\_i^2}\approx1$，那么可先根据计算资源选择尽可能大的$T$，然后选择$\epsilon$使其尽可能$\frac{s^2\_T}{\sigma\_i^2}$尽可能接近1。
+
+### 移动平均提升稳定性
+
 
 
 
