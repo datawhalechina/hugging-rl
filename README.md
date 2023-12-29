@@ -82,8 +82,16 @@
 
 
 
-## 参考资料
+## 关注我们
 
-1. [模仿学习视频教程](https://www.bilibili.com/video/BV1RU4y167oA/?spm_id_from=333.999.0.0)
-1. [强化学习图鉴｜你与最优策略之间，可能还差一本离线强化学习秘籍](https://mp.weixin.qq.com/s/fO5lACKzJHSov9iHnbxAxQ)
+<div align=center>
+<p>扫描下方二维码关注公众号：Datawhale</p>
+<img src="https://raw.githubusercontent.com/datawhalechina/pumpkin-book/master/res/qrcode.jpeg" width = "180" height = "180">
+</div>
 
+
+## LICENSE
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+
+*注：默认使用CC 4.0协议，也可根据自身项目情况选用其他协议*
