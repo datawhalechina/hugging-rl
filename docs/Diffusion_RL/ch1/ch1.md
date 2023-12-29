@@ -151,7 +151,7 @@ $$
 
 为了解决雅可比矩阵计算复杂的问题，利用高斯分布梯度计算方便，对数据扰动。同时，数据扰动也能解决数据分布处于低维流形的问题，也减少了数据分布密度低的区域。为了解决Langevin Dynamics无法区分数据模式权重的问题，利用annealed Langevin Dynamics进行数据生成。
 
-若$\sigma_i$为高斯分布的方差，且集合$\\{\sigma\_i\\}\_{i=1}^L$中元素满足$\frac{\sigma\_1}{\sigma\_2}=\cdots=\frac{\sigma\_{L-1}}{\sigma\_L}\gt1$，那么扰动后的数据分布为$q\_{\sigma}(\mathbf{x})=\int p\_{data}(\mathbf{t})\mathcal{N}(\mathbf{x}\vert\mathbf{t},\sigma^2I)$。同时，为了应对以上挑战，$\sigma\_1$应足够的大，$\sigma\_L$应足够大。那么，分数网络应该估计数据扰动后分布的梯度，即$\forall\sigma\in\\{\sigma\_i\\}_{i=1}^L:\mathbf{s}\_{\theta}(\mathbf{x},\sigma)\approx\nabla\_{\mathbf{x}}log{q\_{\sigma}(\mathbf{x})}$。此时，$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)$称为Noise Conditional Score Network(NCSN)，目标函数为
+若$\sigma_i$为高斯分布的方差，且集合$\\{\sigma\_i\\}\_{i=1}^L$中元素满足$\frac{\sigma\_1}{\sigma\_2}=\cdots=\frac{\sigma\_{L-1}}{\sigma\_L}\gt1$，那么扰动后的数据分布为$q\_{\sigma}(\mathbf{x})=\int p\_{data}(\mathbf{t})\mathcal{N}(\mathbf{x}\vert\mathbf{t},\sigma^2I)$。同时，为了应对以上挑战，$\sigma\_1$应足够的大，$\sigma\_L$应足够大。那么，分数网络应该估计数据扰动后分布的梯度，即$\forall\sigma\in\\{\sigma\_i\\}_{i=1}^L:\mathbf{s}\_{\theta}(\mathbf{x},\sigma)\approx\nabla\_{\mathbf{x}}log{q\_{\sigma}(\mathbf{x})}$。此时，$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)$称为Noise Conditional Score Network(NCSN)，对于每个给定的$\sigma$，目标函数为
 $$
 \begin{equation}
 l(\theta;\sigma)=\frac{1}{2}\mathbb{E}\_{p\_{data}(\mathbf{x})}\mathbb{E}\_{\tilde{x}\sim\mathcal{N}(\mathbf{x},\sigma^2 I)}[\Vert\mathbf{s}\_{\theta}(\tilde{\mathbf{x}},\sigma)+\frac{\tilde{\mathbf{x}}-\mathbf{x}}{\sigma^2}\Vert\_2^2]\tag{1.14}
@@ -163,7 +163,7 @@ $$
 \mathcal{L}(\mathbf{\theta};\\{\sigma\_i\\}\_{i=1}^L)=\frac{1}{L}\sum\_{i=1}^{L}\lambda(\sigma\_i)l(\mathbf{\theta};\sigma\_i)\tag{1.15}
 \end{equation}
 $$
-式(1.15)中$\lambda(\sigma\_i)=\sigma\_i^2$。以此为目标函数训练神经网络，就可以得到数据分布梯度的估计函数。
+式(1.15)中$\lambda(\sigma\_i)=\sigma\_i^2$，以便于每项$\lambda(\sigma\_i)l(\mathbf{\theta};\sigma\_i)$为同一个数量级。以此为目标函数训练神经网络，就可以得到数据分布梯度的估计函数。
 
 根据分数估计函数，生成样本的Annealed Langevin dynamics算法伪代码如图1.3所示
 
@@ -179,6 +179,20 @@ $$
 - 分数网络$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)$包含参数$\sigma$的方式
 - 步长参数$\epsilon$的设定
 - 采样步数$T$
+
+### 正态噪音方差的选择
+
+对于初始噪音方差$\sigma\_1$的选择，文献[4]提出应与训练数据中数据对之间欧氏距离一样大；噪音方差$\sigma\_{L}$为0.01，保持不变；对于其它的噪音方差的选择，应符合以$\gamma=\frac{\sigma\_{i-1}}{\sigma}$为比例的等比数列，且满足式(1.16)
+$$
+\begin{equation}
+\Phi(\sqrt{2D}(\gamma-1)+3\gamma)-\Phi(\sqrt{2D}(\gamma-1)-3\gamma)\approx0.5\tag{1.16}
+\end{equation}
+$$
+式(1.16)中$\Phi$为标准正态分布，$D$为数据维度。
+
+### 分数网络包含噪音信息的方式
+
+文献[4]中分数网络是以方差$\sigma$为条件的网络，那么对于无归一化的分数网络，其内存的需求与$L$呈现线性关系，这是不适用的。因此，$\mathbf{s}\_{\theta}(\mathbf{x},\sigma)=\mathbf{s}\_{\theta}(\mathbf{x})/\sigma$是一种简单高效的替代方式，$\mathbf{s}\_{\theta}(\mathbf{x})$为无条件分数网络。
 
 
 
