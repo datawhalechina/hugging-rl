@@ -218,7 +218,7 @@ $$
 
 ## Score SDEs
 
-
+DDPM和SPM扩散模型均遵循一个统一的范式：首先利用高斯噪音扰动数据使原始数据分布与标准正态分布一致；然后，从标准正态分布的数据抽样，利用朗之万MCMC抽样法，生成原始数据。与之相比，文献[6]Score SDE(Stochastic Differential Equation)模型利用随机微分方程扩展到无限噪音规模。
 
 
 
@@ -236,11 +236,11 @@ $$
 
 [5] Song Y, Ermon S. Improved techniques for training score-based generative models[J]. Advances in neural information processing systems, 2020, 33: 12438-12448.
 
-[6] Karras T, Aittala M, Aila T, et al. Elucidating the design space of diffusion-based generative models[J]. Advances in Neural Information Processing Systems, 2022, 35: 26565-26577.
+[6] Song Y, Sohl-Dickstein J, Kingma D P, et al. Score-based generative modeling through stochastic differential equations[J]. arXiv preprint arXiv:2011.13456, 2020.
 
 [7] Song Y, Durkan C, Murray I, et al. Maximum likelihood training of score-based diffusion models[J]. Advances in Neural Information Processing Systems, 2021, 34: 1415-1428.
 
-[8] Song Y, Ermon S. Generative modeling by estimating gradients of the data distribution[J]. Advances in neural information processing systems, 2019, 32.
+[8] Karras T, Aittala M, Aila T, et al. Elucidating the design space of diffusion-based generative models[J]. Advances in Neural Information Processing Systems, 2022, 35: 26565-26577.
 
 [9] [Rao–Blackwell theorem - Wikipedia](https://en.wikipedia.org/wiki/Rao–Blackwell_theorem)
 
