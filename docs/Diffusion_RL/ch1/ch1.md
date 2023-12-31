@@ -232,7 +232,9 @@ $$
 d\mathbf{x}=[\mathbf{f}(\mathbf{x},t)-g(t)^2\nabla\_{\mathbf{x}}log{p\_t(\mathbf{x})}]dt+g(t)d\mathbf{\bar{w}}\tag{1.20}
 \end{equation}
 $$
-只要式(1.20)中$\nabla\_{\mathbf{x}}log{p\_{t}(\mathbf{x})}$对于所有时间$t$已知，那么就可以根据式(1.20)推导逆扩散过程，用于蒙特卡洛采样生成样本。
+式(1.20)中$\mathbf{\bar{w}}$为时间反向的标准维纳过程，$dt$为无穷小的负的时间步长。
+
+只要式(1.20)中$\nabla\_{\mathbf{x}}log{p\_{t}(\mathbf{x})}$对于所有时间$t$已知，那么就可以根据式(1.20)推导逆扩散过程，从而生成样本。
 
 如图1.4所示，Score SDEs扩散过程和逆扩散过程示意图。
 
@@ -255,7 +257,7 @@ $$
 $$
 式(1.21)中$\lambda:[0,T]\to\mathbb{R}\_{\gt0}$是一个正权重函数。与DDPMs和SDMs一样，$\lambda\propto\frac{1}{\mathbb{E}[\Vert\nabla\_{\mathbf{x}(t)}log{p\_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))}\Vert^2\_2]}$
 
-
+若转换函数$p_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))$已知，那么式(1.21)变高效可解。若函数$\mathbf{f}(\cdot,t)$为防射函数，以及转换函数为高斯分布，那么均值和方差可知，从而分数估计网络可训练。
 
 
 
