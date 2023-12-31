@@ -245,6 +245,18 @@ $$
 
 图(1.4)中$\mathbf{x}(0)\sim p\_0$表示样本数据；$\mathbf{x}(T)\sim p\_T$表示先验分布，不包含$p_0$的任何信息，例如：高斯分布。
 
+### 随机微分方程的分数估计
+
+与DDPMs和SDMs一样，训练一个与时间依赖的分数模型$\mathbf{s\_{\theta}}(\mathbf{x},t)$估计分数$\nabla\_\mathbf{x}log{p\_t(\mathbf{x})}$，可见式(1.21)
+$$
+\begin{equation}
+\theta^{\*}=\underset{\theta}{argmin}\mathbb{E}\_{t}\{\lambda(t)\mathbb{E}\_{\mathbf{x}(0)}\mathbb{E}\_{\mathbf{x}(t)\vert\mathbf{x}(0)}[\Vert\mathbf{s}\_{\theta}(\mathbf{x}(t),t)-\nabla\_{\mathbf{x}(t)}log{p\_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))}\Vert\_2^2]\}\tag{1.21}
+\end{equation}
+$$
+式(1.21)中$\lambda:[0,T]\to\mathbb{R}\_{\gt0}$是一个正权重函数。与DDPMs和SDMs一样，$\lambda\propto\frac{1}{\mathbb{E}[\Vert\nabla\_{\mathbf{x}(t)}log{p\_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))}\Vert^2\_2]}$
+
+
+
 
 
 ## 参考文献
