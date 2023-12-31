@@ -226,7 +226,9 @@ d\mathbf{x}=\mathbf{f}(\mathbf{x},t)dt + g(t)d\mathbf{w}\tag{1.19}
 $$
 式(1.19)中，$\mathbf{w}$为标准维纳过程，也就是布朗运动；$\mathbf{f}(\cdot,t):\mathbb{R}^d\to\mathbb{R}^d$是一个值为向量的函数，被称为$\mathbf{x}(t)$的漂移系数；$g(\cdot):\mathbb{R}\to\mathbb{R}$是一个标量函数，被称为$\mathbf{x}(t)$的扩散系数。根据文献[12]，可知，只要飘逸系数和扩散系数满足Lipschitz连续，那么随机微分方程的强解一定存在。同时，$\mathbf{x}(t)$的概率密度函数用$p\_t(\mathbf{x})$表示；对于$0\le s\lt t\le T$，$p\_{st}(\mathbf{x}(t)\vert\mathbf{x}(s))$表示从$\mathbf{x}(s)$转换到$\mathbf{x}(t)$。
 
-根据文献[6]，可知，扩散过程的逆也是一个扩散过程，其逆时间随机微分方程可见式(1.20)
+DDPM和SGM可被视为两个不同SDEs的离散化。其中，SGM扩散过程对应的随机微分方程为$d\mathbf{x}=\sqrt{\frac{d[\sigma^2(t)]}{dt}}d\mathbf{w}$；DDPM扩散过程对应的随机微分方程为$d\mathbf{x}=-\frac{1}{2}\beta(t)\mathbf{x}dt+\sqrt{\beta(t)}d\mathbf{w}$。对于SGM的微分方程，随着$t\to\infty$，其产生一个方差爆炸的过程，因此对应的随机微分方程被称为"VE-SDE"；对于DDPM的随机微分方程，随着$t\to\infty$，其方差为1的过程，因此对应的随机微分方程被称为"VP-SDE"。
+
+根据文献[6]，可知，扩散过程的逆过程也是一个扩散过程，其反向时间随机微分方程可见式(1.20)
 $$
 \begin{equation}
 d\mathbf{x}=[\mathbf{f}(\mathbf{x},t)-g(t)^2\nabla\_{\mathbf{x}}log{p\_t(\mathbf{x})}]dt+g(t)d\mathbf{\bar{w}}\tag{1.20}
@@ -257,7 +259,21 @@ $$
 $$
 式(1.21)中$\lambda:[0,T]\to\mathbb{R}\_{\gt0}$是一个正权重函数。与DDPMs和SDMs一样，$\lambda\propto\frac{1}{\mathbb{E}[\Vert\nabla\_{\mathbf{x}(t)}log{p\_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))}\Vert^2\_2]}$
 
-若转换函数$p_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))$已知，那么式(1.21)变高效可解。若函数$\mathbf{f}(\cdot,t)$为防射函数，以及转换函数为高斯分布，那么均值和方差可知，从而分数估计网络可训练。
+若转换函数$p\_{0t}(\mathbf{x}(t)\vert\mathbf{x}(0))$已知，那么式(1.21)变高效可解。若函数$\mathbf{f}(\cdot,t)$为防射函数，以及转换函数为高斯分布，那么均值和方差可知，从而分数估计网络可训练。
+
+### 样本生成
+
+分数估计网络训练完成后，可利用数值SDE求解器求解反向时间随机微分方程。数值求解器提供了随机微分方程的近似求解器，例如：Euler-Maruyama和随机Runge-Kutta方法。为了提高采样质量，利用数值SDE求解器得到下一时刻$t$的样本估计$\mathbf{x}\_t$，再利用基于分数的MCMC方法纠正$\mathbf{x}\_t$，即数值SDE求解器扮演“预测器”的角色，MCMC方法扮演“纠正器”的角色，该方法被称为Predictor-Corrector采样。
+
+#### 黑盒常微分方程求解器
+
+对于所有的扩散过程，均有一个对应的确定过程，它的ODE(Ordinary Differential Equation)为
+$$
+\begin{equation}
+d\mathbf{x}=[\mathbf{f}(\mathbf{x},t)-\frac{1}{2}g(t)^2\nabla\_{\mathbf{x}}log{p\_{t}(\mathbf{x})}]dt\tag{1.22}
+\end{equation}
+$$
+只要分数$\nabla\_{\mathbf{x}}log{p\_{t}}(\mathbf{x})$已知，那么式(1.22)就可以被确定，该常微分方程被称为概率流ODE。那么，求解该常微分方程就可以进行采样。
 
 
 
