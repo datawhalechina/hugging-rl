@@ -218,9 +218,32 @@ $$
 
 ## Score SDEs
 
-DDPM和SPM扩散模型均遵循一个统一的范式：首先利用高斯噪音扰动数据使原始数据分布与标准正态分布一致；然后，从标准正态分布的数据抽样，利用朗之万MCMC抽样法，生成原始数据。与之相比，文献[6]Score SDE(Stochastic Differential Equation)模型利用随机微分方程扩展到无限噪音规模。
+DDPM和SPM扩散模型均遵循一个统一的范式：首先利用高斯噪音扰动数据使原始数据分布与标准正态分布一致；然后，从标准正态分布的数据抽样，利用朗之万MCMC抽样法，生成原始数据。与之相比，文献[6]Score SDE(Stochastic Differential Equation)模型利用随机微分方程扩展到无限噪音规模，其扩散过程被建模为$It\hat{o}$随机微分方程的解，可见式(1.19)。
+$$
+\begin{equation}
+d\mathbf{x}=\mathbf{f}(\mathbf{x},t)dt + g(t)d\mathbf{w}\tag{1.19}
+\end{equation}
+$$
+式(1.19)中，$\mathbf{w}$为标准维纳过程，也就是布朗运动；$\mathbf{f}(\cdot,t):\mathbb{R}^d\to\mathbb{R}^d$是一个值为向量的函数，被称为$\mathbf{x}(t)$的漂移系数；$g(\cdot):\mathbb{R}\to\mathbb{R}$是一个标量函数，被称为$\mathbf{x}(t)$的扩散系数。根据文献[12]，可知，只要飘逸系数和扩散系数满足Lipschitz连续，那么随机微分方程的强解一定存在。同时，$\mathbf{x}(t)$的概率密度函数用$p\_t(\mathbf{x})$表示；对于$0\le s\lt t\le T$，$p\_{st}(\mathbf{x}(t)\vert\mathbf{x}(s))$表示从$\mathbf{x}(s)$转换到$\mathbf{x}(t)$。
 
+根据文献[6]，可知，扩散过程的逆也是一个扩散过程，其逆时间随机微分方程可见式(1.20)
+$$
+\begin{equation}
+d\mathbf{x}=[\mathbf{f}(\mathbf{x},t)-g(t)^2\nabla\_{\mathbf{x}}log{p\_t(\mathbf{x})}]dt+g(t)d\mathbf{\bar{w}}\tag{1.20}
+\end{equation}
+$$
+只要式(1.20)中$\nabla\_{\mathbf{x}}log{p\_{t}(\mathbf{x})}$对于所有时间$t$已知，那么就可以根据式(1.20)推导逆扩散过程，用于蒙特卡洛采样生成样本。
 
+如图1.4所示，Score SDEs扩散过程和逆扩散过程示意图。
+
+<div align="center">
+  <img src="./img/score-sde.png"/>
+</div>
+<div align="center">
+  图1.4 Score SDEs扩散过程和逆扩散过程
+</div>
+
+图(1.4)中$\mathbf{x}(0)\sim p\_0$表示样本数据；$\mathbf{x}(T)\sim p\_T$表示先验分布，不包含$p_0$的任何信息，例如：高斯分布。
 
 
 
@@ -247,4 +270,6 @@ DDPM和SPM扩散模型均遵循一个统一的范式：首先利用高斯噪音�
 [10] [Evidence lower bound - Wikipedia](https://en.wikipedia.org/wiki/Evidence_lower_bound#Maximizing_the_ELBO)
 
 [11] [Generative Modeling by Estimating Gradients of the Data Distribution | Yang Song (yang-song.net)](https://yang-song.net/blog/2021/score/)
+
+[12] [Itô diffusion - Wikipedia](https://en.wikipedia.org/wiki/Itô_diffusion)
 
