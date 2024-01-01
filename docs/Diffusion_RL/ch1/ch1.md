@@ -277,6 +277,18 @@ $$
 
 
 
+### 可控的生成
+
+利用随机微分方程把扩散模型扩展到连续结构，不仅允许从$p_0$采样生成数据样本，而且允许基于条件的生成$p_0(\mathbf{x}(0)\vert\mathbf{y})$。给定扩散过程随机微分方程(1.19)，可从$p_t(\mathbf{x}(t)\vert\mathbf{y})$采样，其逆扩散过程随机微分方程为
+$$
+\begin{equation}
+d\mathbf{x}=\{\mathbf{f}(\mathbf{x},t)-g(t)^2[\nabla_{\mathbf{x}}log{p_t(\mathbf{x})}+\nabla_{\mathbf{x}}log{p_{t}(\mathbf{y}\vert\mathbf{x})}]\}dt+g(t)d\mathbf{\bar{w}}\tag{1.23}
+\end{equation}
+$$
+根据式(1.23)，可知，只要给定扩散过程梯度的估计$\nabla_{\mathbf{x}}log{p_t(\mathbf{y}\vert\mathbf{x}(t))}$，那么就可以求解逆问题的随机微分方程。可通过训练一个模型估计扩散过程$p_t(\mathbf{y}\vert\mathbf{x}(t))$，也可以利用启发式方法和领域知识估计其梯度。
+
+
+
 ## 参考文献
 
 [1] Yang L, Zhang Z, Song Y, et al. Diffusion models: A comprehensive survey of methods and applications[J]. ACM Computing Surveys, 2023, 56(4): 1-39.
