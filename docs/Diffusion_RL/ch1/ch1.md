@@ -273,7 +273,7 @@ $$
 d\mathbf{x}=[\mathbf{f}(\mathbf{x},t)-\frac{1}{2}g(t)^2\nabla\_{\mathbf{x}}log{p\_{t}(\mathbf{x})}]dt\tag{1.22}
 \end{equation}
 $$
-只要分数$\nabla\_{\mathbf{x}}log{p\_{t}}(\mathbf{x})$已知，那么式(1.22)就可以被确定，该常微分方程被称为概率流ODE。那么，求解该常微分方程就可以进行采样。
+只要分数$\nabla\_{\mathbf{x}}log{p\_{t}}(\mathbf{x})$已知，那么式(1.22)就可以被确定，该常微分方程被称为概率流ODE。那么，求解该常微分方程就可以进行采样。因为利用神经网络估计分数，所以该方法被称为黑盒常微分方程求解器。
 
 
 
