@@ -5,7 +5,7 @@
 
 本项目计划分为三个阶段，分别是
 
-- 知识梳理阶段 :point_left: **正在进行**:sparkles::sparkles::sparkles::sparkles::sparkles::sparkles:
+- 知识梳理阶段 :point_left: **正在进行**:sparkles::sparkles::sparkles:
 - 算法复现阶段 :point_left: **正在进行**:sparkles:
 - 项目优化阶段
 
