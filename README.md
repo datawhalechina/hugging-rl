@@ -7,7 +7,7 @@
 
 - 知识梳理阶段 :point_left: **正在进行**:sparkles::sparkles::sparkles:
 - 算法复现阶段 :point_left: **正在进行**:sparkles:
-- 项目优化阶段:point_left:**正在进行**:sparkles:
+- 项目优化阶段:point_left: **正在进行**:sparkles:
 
 知识梳理阶段主要关注知识框架的搭建；算法复现阶段主要关注经典算法的代码复现；项目优化阶段主要关注**知识完整性和准确性**、**排版整洁性**、以及**代码准确性**。
 
