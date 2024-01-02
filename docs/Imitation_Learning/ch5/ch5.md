@@ -1,2 +1,2 @@
-# 模仿观测
+# Imiation from Observation
 
