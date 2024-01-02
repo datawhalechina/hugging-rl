@@ -83,10 +83,9 @@
 
 | 章节                                   | 进度一 | 进度二 | 进度三 |
 | :------------------------------------- | :----: | ------ | ------ |
-| 第一章 Transformer                     |        |        |        |
-| 第二章 Decision Transformer            |        |        |        |
-| 第三章 Multi-Game Decision Transformer |        |        |        |
-| 第四章 Q-Transformer                   |   1%   |        |        |
+| 第一章 Decision Transformer            |        |        |        |
+| 第二章 Multi-Game Decision Transformer |        |        |        |
+| 第三章 Q-Transformer                   |   1%   |        |        |
 
 
 
