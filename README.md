@@ -30,8 +30,9 @@
 | 第五章 Imitation from Observation |        |        |        |
 | 第六章 ThriftyDAgger算法 |        |        |        |
 | 第七章 Deep MaxEntIRL算法         |        |        |        |
-| 第八章  AVRIL算法                 | | | |
-| 第九章 GAIL算法 | 80% | | |
+| 第九章 Bayesian REX算法           |        |        |        |
+| 第八章  AVRIL算法                 |        |        |        |
+| 第九章 GAIL算法                   | 80% | | |
 | 第十章 总结 | | | |
 
 

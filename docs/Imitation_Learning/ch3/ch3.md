@@ -28,7 +28,7 @@
 
 #### 贝叶斯算法
 
-简单来说，这类算法利用专家策略形成的数据更新奖励函数的先验。文献[12]中，BIRL是最早的贝叶斯逆强化学习，它利用玻尔兹曼分布建模奖励函数的似然；利用Beta分布建模奖励函数的先验。同时，为了能够在奖励函数的连续空间计算后验，利用MCMC得到后验均值的估计。由于产生后验样本需要解马尔科夫决策过程，因此以上基于贝叶斯的算法很难扩展到连续动作空间。为了克服这种限制，文献[13]利用变分推断近似后验。
+简单来说，这类算法利用专家策略形成的数据更新奖励函数的先验。文献[12]中，BIRL是最早的贝叶斯逆强化学习，它利用玻尔兹曼分布建模奖励函数的似然；利用Beta分布建模奖励函数的先验。同时，为了能够在奖励函数的连续空间计算后验，利用MCMC得到后验均值的估计。由于产生后验样本需要解马尔科夫决策过程，因此以上基于贝叶斯的算法很难扩展到连续动作空间。为了克服这种限制，文献[13]利用专家演示数据的偏好标签提出了一个似然方程，用于从后验分布生成样本，该算法被命名为Bayesian REX(Bayesian Reward Extrapolation)；文献[14]利用变分推断近似后验。
 
 
 
@@ -58,5 +58,6 @@
 
 [12] Ramachandran D, Amir E. Bayesian Inverse Reinforcement Learning[C]//IJCAI. 2007, 7: 2586-2591.
 
-[13] Chan A J, van der Schaar M. Scalable bayesian inverse reinforcement learning[J]. arXiv preprint arXiv:2102.06483, 2021.
+[13] Brown D, Coleman R, Srinivasan R, et al. Safe imitation learning via fast bayesian reward inference from preferences[C]//International Conference on Machine Learning. PMLR, 2020: 1165-1177.
 
+[14] Chan A J, van der Schaar M. Scalable bayesian inverse reinforcement learning[J]. arXiv preprint arXiv:2102.06483, 2021.
