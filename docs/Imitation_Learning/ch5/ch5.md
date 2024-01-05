@@ -20,11 +20,12 @@
 文献[3]利用TCN(time-contrastive networks)引入了一个自监督表示学习。TCN训练了一个从视频帧中抽取不同上下文中不变特征的神经网络，例如：相机角度。通过利用一个三体损失函数，使不同模态同时发生的帧在向量空间中相近，相似帧发生时间差较大的帧在向量空间中距离较远，可见图5.2。
 
 <div align="center">
-  <img src="./img/tcn.png" height=350/>
+  <img src="./img/TCN.png" height=350/>
 </div>
 <div align="center">
   图5.2 TCN网络示意图
 </div>
+
 
 为了构建奖励函数，利用欧式距离度量智能体相机图片embedding与演示embedding之间距离。最后，利用强化学习技术优化模仿学习策略的奖励函数。然而，这种技术需要多视角的训练视频，在现实中往往不存在。
 
