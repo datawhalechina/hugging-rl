@@ -46,7 +46,7 @@ $$
 文献[2]表明，对于$\forall(s,a)$，$\hat{Q}^{\pi}:=lim_{k\to\infty}\hat{Q}(k)$为$Q^{\pi}$的下界。然而，CQL更关注的是价值函数$V^{\pi}(s)$的估计，那么可进一步加紧下界。为了使策略$\pi(a|s)$下$\hat{Q}(\pi)$的期望值为$V^{\pi}$的下界，文献[2]引入数据集的策略$\pi\_{\beta}(a\vert s)$下的$Q$函数最大化项，可见式(3.6)。
 $$
 \begin{equation}
-\hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad \alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(s,a)}[Q(s,a)])_\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.6}
+\hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad \alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(s,a)}[Q(s,a)])+\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.6}
 \end{equation}
 $$
 
