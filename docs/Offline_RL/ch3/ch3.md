@@ -41,7 +41,7 @@ $$
 \hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D},a\sim{\mu(s,a)}}[Q(s,a)]+\frac{1}{2}\mathbb{E}\_{s,a\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.5}
 \end{equation}
 $$
-由于标准的$Q(s,a)$函数的训练，不会查询未观测过的状态，但会查询未观测过的动作。所以，限制$\mu$与数据集中状态边缘分布匹配，以便于$\mu(s,a)=d^{\pi\_{\beta}}(s)\mu(a\vert s)$成立。其中，$d^{\pi\_{\beta}}(s)$为策略$\pi_{\beta}$下的状态$s$的折扣边缘分布。具体的限制方法，论文中没有详细介绍。
+由于标准的$Q(s,a)$函数的训练，不会查询未观测过的状态，但会查询未观测过的动作。所以，限制$\mu$与数据集中状态边缘分布匹配，以便于$\mu(s,a)=d^{\pi\_{\beta}}(s)\mu(a\vert s)$成立。其中，$d^{\pi\_{\beta}}(s)$为策略$\pi_{\beta}$下的状态$s$的折扣边缘分布。具体的限制方法，可见下文。
 
 文献[2]表明，对于$\forall(s,a)$，$\hat{Q}^{\pi}:=lim_{k\to\infty}\hat{Q}(k)$为$Q^{\pi}$的下界。然而，CQL更关注的是价值函数$V^{\pi}(s)$的估计，那么可进一步加紧下界。为了使策略$\pi(a|s)$下$\hat{Q}(\pi)$的期望值为$V^{\pi}$的下界，文献[2]引入数据集的策略$\pi\_{\beta}(a\vert s)$下的$Q$函数最大化项，可见式(3.6)。
 $$
@@ -59,9 +59,8 @@ $$
 
 ### Conservative Q-Learning算法
 
-根据文献[2]，可知，求解式(3.6)可得策略$\pi$价值的下界。若利用式(3.6)作为策略的评估可得$\hat{Q}^{\pi}$，然后再提升策略，不断交替迭代以上两个步骤，那么就可得$V^{\pi}$的下界。或者利用式(3.6)作为策略评估可得$\hat{Q}^{\pi}$，再最大化$\hat{Q}^{\pi}$获得策略$\pi$，不断迭代也能得到策略价值的下界。然而，以上两种方式均是线上学习，分别是actor-critic和q-learning。
+根据文献[2]，可知，求解式(3.6)可得策略$\pi$价值的下界，那么就会降低策略高估的风险。因此，若利用式(3.6)作为策略的评估可得$\hat{Q}^{\pi}$，然后再进行一步的策略提升，那么就可得$V^{\pi}$的下界。然而，这种计算成本很高。另一种方法是使$u(\mathbf{a}\vert\mathbf{s})$近似策略$\hat{\pi}^k$，该策略$\hat{\pi}^k$是通过最大化当前迭代$Q$函数获得的，这种方式更接近线上强化学习，可见式(3.7)。这类优化问题的实例可被称为$CQL(\mathcal{R})$。
 
-为了使离线强化学习等价于在线学习，定义一类关于$\mu(a\vert s)$的优化问题，可见式(3.7)。这类优化问题的实例可被称为$CQL(\mathcal{R})$。
 $$
 \begin{equation}
 \underset{Q}{min}\underset{\mu}{max}\quad\alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]) + \frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k(s,a))^2]+\mathcal{R}(\mu)\tag{3.7}
@@ -69,7 +68,7 @@ $$
 $$
 式(3.7)中$\mathcal{R}(\mu)$为正则化器。
 
-**CQL的变体：** 若利用KL-Divergence度量先验分布$\rho(a\vert s)$与策略$\mu$之间距离作为正则化器$\mathcal{R}(\mu)$，且先验分布为均匀分布，那么$CQL(\mathcal{R})$可被实例化为式(3.8)。
+**CQL的变体：** 若利用先验分布为均匀分布的$\rho(a\vert s)$与策略$\mu$之间KL-Divergence距离作为正则化器$\mathcal{R}(\mu)$，那么$CQL(\mathcal{R})$可被实例化为式(3.8)。其中，$\mu(\mathbf{a}\vert\mathbf{s})$正比于$\rho(\mathbf{a}\vert\mathbf{s})\cdot exp(Q(\mathbf{s},\mathbf{a}))$
 $$
 \begin{equation}
 \underset{Q}{min}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D}}[log\sum_a exp(Q(s,a))-\mathbb{E}\_{a\sim\hat{\pi}\_{\beta}(a\vert s)}[Q(s,a)]]+\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q-\hat{\mathcal{B}}^{\pi\_k}\hat{Q}^k)^2]\tag{3.8}
