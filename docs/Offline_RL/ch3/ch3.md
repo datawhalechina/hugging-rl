@@ -41,16 +41,18 @@ $$
 \hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad\alpha\mathbb{E}\_{s\sim\mathcal{D},a\sim{\mu(s,a)}}[Q(s,a)]+\frac{1}{2}\mathbb{E}\_{s,a\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.5}
 \end{equation}
 $$
-由于标准的$Q(s,a)$函数的训练，不会查询未观测过的状态，但会查询未观测过的动作。所以，限制$\mu$与数据集中状态边缘分布匹配，以便于$\mu(s,a)=d^{\pi\_{\beta}}(s)\mu(a\vert s)$成立。其中，$d^{\pi\_{\beta}}(s)$为策略$\pi_{\beta}$下的状态$s$的折扣边缘分布。
+由于标准的$Q(s,a)$函数的训练，不会查询未观测过的状态，但会查询未观测过的动作。所以，限制$\mu$与数据集中状态边缘分布匹配，以便于$\mu(s,a)=d^{\pi\_{\beta}}(s)\mu(a\vert s)$成立。其中，$d^{\pi\_{\beta}}(s)$为策略$\pi_{\beta}$下的状态$s$的折扣边缘分布。具体的限制方法，论文中没有详细介绍。
 
-文献[2]表明，当$k\to\infty$时，$\forall(s,a)$，$\hat{Q}^{\pi}:=lim_{k\to\infty}\hat{Q}(k)$为$Q^{\pi}$的下界。然而，CQL更关注的是价值函数$V^{\pi}(s)$的估计，那么可进一步加紧下界。为了使策略$\pi(a|s)$下$\hat{Q}(\pi)$的期望值为$V^{\pi}$的下界，文献[2]引入数据集的策略$\pi\_{\beta}(a\vert s)$下的$Q$函数最大化项，可见式(3.6)。
+文献[2]表明，对于$\forall(s,a)$，$\hat{Q}^{\pi}:=lim_{k\to\infty}\hat{Q}(k)$为$Q^{\pi}$的下界。然而，CQL更关注的是价值函数$V^{\pi}(s)$的估计，那么可进一步加紧下界。为了使策略$\pi(a|s)$下$\hat{Q}(\pi)$的期望值为$V^{\pi}$的下界，文献[2]引入数据集的策略$\pi\_{\beta}(a\vert s)$下的$Q$函数最大化项，可见式(3.6)。
 $$
 \begin{equation}
-\hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad \alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(s,a)}[Q(s,a)])-\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.6}
+\hat{Q}^{k+1}\leftarrow \underset{Q}{argmin}\quad \alpha(\mathbb{E}\_{s\sim\mathcal{D},a\sim\mu(a\vert s)}[Q(s,a)]-\mathbb{E}\_{s\sim\mathcal{D},a\sim\hat{\pi}\_{\beta}(s,a)}[Q(s,a)])_\frac{1}{2}\mathbb{E}\_{s,a,{s}'\sim\mathcal{D}}[(Q(s,a)-\hat{\mathcal{B}}^{\pi}\hat{Q}^k(s,a))^2]\tag{3.6}
 \end{equation}
 $$
 
-根据文献[2]，可知，由式(3.6)产生的$\hat{Q}^{\pi}$不一定能够对于$\forall(s,a)$均为$Q^{\pi}$的下界。但是，$\hat{Q}^{\pi}$的均值一定为价值函数$V^{\pi}$的下界，可以理解为：若$\mu(a\vert s)=\pi(a\vert s)$成立，则$\mathbb{E}\_{\pi(a\vert s)}[\hat{Q}^{\pi}(s,a)]\le V^{\pi}(s)$。
+根据文献[2]中理论，可知，由式(3.6)产生的$\hat{Q}^{\pi}$不一定能够对于$\forall(s,a)$均为$Q^{\pi}$的下界。但是，$\hat{Q}^{\pi}$的均值一定为价值函数$V^{\pi}$的下界，可以理解为：若$\mu(a\vert s)=\pi(a\vert s)$成立，则$\mathbb{E}\_{\pi(a\vert s)}[\hat{Q}^{\pi}(s,a)]\le V^{\pi}(s)$。
+
+直觉上来说，式(3.6)中最大化策略$\hat{\pi}\_{\beta}$下的$Q$值，那么策略$\hat{\pi}\_{\beta}$下动作的$Q$值最可能被高估，即数据集中出现过的动作才有可能会被高估，因此$\hat{Q}^{\pi}$处处小于$Q^{\pi}$未必成立。
 
 
 
