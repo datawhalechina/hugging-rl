@@ -37,7 +37,7 @@
 | 第二章 GAIL算法     |  80%   |        |        |
 | 第三章 IBC算法       |   5%   |        |        |
 | 第三章 BeT算法          |   5%   | | |
-| 第五章 Diffusion Policy | 10% | | |
+| 第五章 Diffusion Policy | 90% | | |
 
 
 
