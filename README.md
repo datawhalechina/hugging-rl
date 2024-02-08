@@ -23,9 +23,9 @@
 
 ### 基础篇
 
-| 章节                | 进度 |
-| ------------------- | ---- |
-| 第一章 扩散模型基础 | 90%  |
+| 章节                                                         | 进度 |
+| ------------------------------------------------------------ | ---- |
+| 第一章 扩散模型基础[[1](https://www.robotech.ink/index.php/Foundation/172.html),[2](https://www.robotech.ink/index.php/Foundation/170.html),[3](https://www.robotech.ink/index.php/Foundation/171.html)] | 90%  |
 
 
 
