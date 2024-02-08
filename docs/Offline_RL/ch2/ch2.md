@@ -35,16 +35,20 @@ $$
 
 训练中的不匹配是指即使数据足够，那么若数据集$\mathcal{B}$中的数据分布与策略$\pi$对应的数据分布不一致，价值函数的估计也是不足的。
 
-接下来，作者利用gym中Hopper-v1环境和DDPG算法做了三个实验。第一个实验**Final Buffer**是DDPG智能体以一定探索型噪音的方式在Hopper-v1环境中交互训练100万个时间步，存储所有的转换经验。接下来再利用刚收集的数据离线训练另一个DDPG智能体。第二个实验**Concurrent**是两个智能体同时学习，即一个DDPG与环境交互产生数据，两个智能体同时运用这份数据学习。第三个实验**Imitation**是一个训练好的DDPG智能体作为专家与环境交互100万步，收集这部分数据，利用模仿学习根据这份数据学习。
+接下来，作者利用gym中Hopper-v1环境和DDPG算法做了三个实验。第一个实验**Final Buffer**是DDPG智能体以一定探索型噪音的方式在Hopper-v1环境中交互训练100万个时间步，存储所有的转换经验，从而创建一个包含各种各样状态-动作的数据集。接下来再利用刚收集的数据离线训练另一个DDPG智能体。第二个实验**Concurrent**是两个智能体同时学习。行为策略与环境交互产生数据，存储在replay-buffer。行为策略的动作增加了以高斯分布$\mathcal{N}(0,1)$的噪音，从而保证足够的探索。然后，行为克隆智能体与off-polciy智能体同时基于这份数据学习。第三个实验**Imitation**是一个训练好的DDPG智能体作为专家与环境交互100万步，收集这部分数据，行为克隆智能体与off-polciy智能体基于这份数据学习。
 
 <div align="center">
   <img src="./img/BCQ_exp.png" width=600 height=500/>
 </div>
 <div align="center">
-  图2.1 三种实验结果(实线表示的是带有探索噪音下每个回合平均结果，点划线表示的是估计的真实值,直线表示的是无探索噪音下每个回合平均结果)
+  图2.1 三种实验结果
 </div>
 
-实验结果表明离线强化学习的策略明显比在线强化学习的策略效果差，即使是专家策略下模仿学习效果也很差。根据并发学习环境下的结果，可知，若初始策略下状态分布存在差异，那么也足够导致离线强化学习的推断错误。
+**注解：** 每个单独的实验结果都是用细线画出。粗线表示的是均值(无探索噪音下评估的结果)。直线代表的是episodes的平均回报(有探索噪音)。点划线是基于Monte-Carlo估计的off-policy智能体的真实值。在所有三个实验中都观察到行为克隆与off-policy智能体之间在表现上存在大的间隔。此外，off-policy智能体的值估计是不稳定的或发散的，且是高估的。
+
+实验结果表明离线强化学习的策略明显比行为克隆算法的策略效果差。根据并发学习环境下的结果，可知，若初始策略下状态分布存在差异，那么也足够导致离线强化学习的推断错误。对于在线强化学习来说，高估有利于探索，智能体探索之后就会纠正估计。然而，对于离线强化学习来说，高估会导致盲目的乐观且得不到纠正，最终造成策略表现很差。
+
+
 
 ### BCQ算法
 
@@ -65,14 +69,30 @@ BCQ算法背后的思想是：为了避免推断错误，策略$\pi$下的状态
 如图2.2所示，BCQ算法的伪代码。
 
 <div align="center">
-  <img src="./img/BCQ.png" width=600 height=500/>
+  <img src="./img/BCQ.png" width=450 />
 </div>
 <div align="center">
   图2.2 BCQ算法的伪代码
 </div>
 
-为了满足目标(1)，把数据集$\mathcal{B}$中状态-动作分布建模为$P^G_{\mathcal{B}}(a\vert s)$。由于高纬空间中$P^G_{\mathcal{B}}(a\vert s)$难以估计，所以训练VAE生成模型$G_w(s)$，用于生成动作。
 
+为了满足目标(1)，把数据集$\mathcal{B}$中状态-动作分布建模为$P^G_{\mathcal{B}}(a\vert s)$。由于高纬空间中$P^G_{\mathcal{B}}(a\vert s)$难以估计，所以训练VAE生成模型$G_w(s)$，用于生成动作。图2中，式(13)为
+
+$$
+\begin{aligned}
+r+\gamma\underset{a_i}{max}[\lambda\underset{j=1,2}{min}Q_{{\theta}'_j}({s}',a_i)+(1-\lambda)\underset{j=1,2}{max}Q_{{\theta}'_j}({s}',a_i)]
+\end{aligned}\tag{5}
+$$
+
+确切来说，BCQ算法通过VAE生成模型实现batch-constrained概念。对于给定的状态，BCQ产生一系列与batch中高度相似的动作，然后通过Q网络选择价值最高的动作。此外，还基于文献[3]中Clipped Double Q-learning算法的改进版，对未见过的状态进行惩罚。惩罚方式可见式(5)，价值估计选择两个Q网络的$\{Q_{\theta_1},Q_{\theta_2}\}$的最小值。文献[3]中这种方式被用于降低价值高估的问题，而BCQ算法中用于惩罚对不确定区域的估计方差过大的问题。因此，式(5)中最小化的权重大于最大化的权重。
+
+对于生成模型$G_{w}$，被用于采样$n$个动作。同时，为了增加随机性或多样性引入了扰动模型$\xi_{\phi}(s,a,\Phi)$，其输出范围为$[-\Phi,\Phi]$。其中，扰动模型的目标函数为
+
+$$
+\begin{aligned}
+\phi\leftarrow\underset{\phi}{argmax}\sum_{(s,a)\in\mathcal{B}}Q_{\theta}(s,a+\xi_{\phi}(s,a,\Phi))
+\end{aligned}\tag{6}
+$$
 
 
 ## 参考文献
@@ -80,3 +100,5 @@ BCQ算法背后的思想是：为了避免推断错误，策略$\pi$下的状态
 [1] Prudencio R F, Maximo M R O A, Colombini E L. A survey on offline reinforcement learning: Taxonomy, review, and open problems[J]. IEEE Transactions on Neural Networks and Learning Systems, 2023.
 
 [2] Fujimoto S, Meger D, Precup D. Off-policy deep reinforcement learning without exploration[C]//International conference on machine learning. PMLR, 2019: 2052-2062.
+
+[3] Fujimoto S, Hoof H, Meger D. Addressing function approximation error in actor-critic methods[C]//International conference on machine learning. 
