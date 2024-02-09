@@ -35,7 +35,7 @@
 
 | 章节                                                         | 进度 |
 | :----------------------------------------------------------- | :--: |
-| 第一章 [MCAC算法](https://www.robotech.ink/index.php/RL/139.html) |      |
+| 第一章 [MCAC：蒙特卡洛增强的Actor-Critic算法](https://www.robotech.ink/index.php/RL/139.html) |      |
 
 
 
@@ -44,7 +44,7 @@
 | 章节                                                         | 进度 |
 | :----------------------------------------------------------- | :--: |
 | 第一章 模仿学习简介                                          |      |
-| 第二章 [GAIL算法](https://www.robotech.ink/index.php/AIL/187.html) |      |
+| 第二章 [GAIL：生成式对抗模仿学习](https://www.robotech.ink/index.php/AIL/187.html) |      |
 | 第三章 IBC算法                                               |      |
 | 第三章 BeT算法                                               |      |
 | 第五章 [扩散策略](https://www.robotech.ink/index.php/Robot-Learning/106.html) |      |
