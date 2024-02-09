@@ -27,7 +27,7 @@
 
 | 章节                                                         | 进度 |
 | ------------------------------------------------------------ | ---- |
-| 第一章 扩散模型[DDPM](https://www.robotech.ink/index.php/Foundation/172.html) | 90%  |
+| 第一章 [DDPM：去噪扩散概率模型](https://www.robotech.ink/index.php/Foundation/172.html) | 90%  |
 
 
 
@@ -56,9 +56,9 @@
 | 章节                                                         | 进度 |
 | :----------------------------------------------------------- | :--: |
 | 第一章 离线强化学习简介                                      | 10%  |
-| 第二章 基于策略约束的方法与[BCQ算法](https://www.robotech.ink/index.php/Policy-Constrained/181.html) | 80%  |
-| 第三章 基于正则化的方法与[CQL算法](https://www.robotech.ink/index.php/Regularization/120.html) | 80%  |
-| 第四章 基于不确定性估计的方法与[REM算法](https://www.robotech.ink/index.php/Uncertainty/191.html) | 80%  |
+| 第二章 [基于策略约束的方法与BCQ算法](https://www.robotech.ink/index.php/Policy-Constrained/181.html) | 80%  |
+| 第三章 [基于正则化的方法与CQL算法](https://www.robotech.ink/index.php/Regularization/120.html) | 80%  |
+| 第四章 [基于不确定性估计的方法与REM算法](https://www.robotech.ink/index.php/Uncertainty/191.html) | 80%  |
 
 
 
