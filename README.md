@@ -44,7 +44,7 @@
 | 章节                                                         | 进度 |
 | :----------------------------------------------------------- | :--: |
 | 第一章 模仿学习简介                                          |      |
-| 第二章 GAIL算法                                              |      |
+| 第二章 [GAIL算法](https://www.robotech.ink/index.php/AIL/187.html) |      |
 | 第三章 IBC算法                                               |      |
 | 第三章 BeT算法                                               |      |
 | 第五章 [扩散策略](https://www.robotech.ink/index.php/Robot-Learning/106.html) |      |
@@ -56,9 +56,9 @@
 | 章节                                                         | 进度 |
 | :----------------------------------------------------------- | :--: |
 | 第一章 离线强化学习简介                                      | 10%  |
-| 第二章 基于策略约束的方法与[BCQ](https://www.robotech.ink/index.php/Policy-Constrained/181.html) | 80%  |
-| 第三章 基于正则化的方法与[CQL](https://www.robotech.ink/index.php/Regularization/120.html) | 80%  |
-| 第四章 基于不确定性估计的方法与[REM](https://www.robotech.ink/index.php/Uncertainty/191.html) | 80%  |
+| 第二章 基于策略约束的方法与[BCQ算法](https://www.robotech.ink/index.php/Policy-Constrained/181.html) | 80%  |
+| 第三章 基于正则化的方法与[CQL]算法(https://www.robotech.ink/index.php/Regularization/120.html) | 80%  |
+| 第四章 基于不确定性估计的方法与[REM算法](https://www.robotech.ink/index.php/Uncertainty/191.html) | 80%  |
 
 
 
