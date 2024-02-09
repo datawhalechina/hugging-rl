@@ -27,7 +27,7 @@
 
 | 章节                                                         | 进度 |
 | ------------------------------------------------------------ | ---- |
-| 第一章 [DDPM：去噪扩散概率模型](https://www.robotech.ink/index.php/Foundation/172.html) | 90%  |
+| 第一章 [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/Foundation/172.html) | 90%  |
 
 
 
