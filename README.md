@@ -1,6 +1,6 @@
 # Hugging Robot Learning
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT) [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 该项目旨在梳理应用于连续动作空间控制的强化学习、模仿学习、以及离线强化学习相关算法，方便进一步学习。
 
