@@ -49,7 +49,7 @@
 | 第一章 模仿学习简介                                          |      |
 | 第二章 [GAIL：生成式对抗模仿学习](https://www.robotech.ink/index.php/AIL/187.html) |      |
 | 第三章 IBC算法                                               |      |
-| 第三章 BeT算法                                               |      |
+| 第三章 [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/Robot-Learning/224.html) |      |
 | 第五章 [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/Robot-Learning/106.html) |      |
 
 
