@@ -110,6 +110,7 @@ $$
 +\infty\quad otherwise
 \end{cases}\tag{7}
 $$
+
 $$
 g(x)=\begin{cases}-x-log(1-e^x)\quad if \quad x\lt 0\\\\ +\infty\quad otherwise\end{cases}\tag{8}
 $$
@@ -120,7 +121,7 @@ $$
 \psi_{GA}^*(\rho_{\pi}-\rho_{\pi_E})=\underset{D\in(0,1)^{\mathcal{S}\times\mathcal{A}}}{max}\mathbb{E}_{\pi}[log(D(s,a))]+\mathbb{E}_{\pi_E}[log(1-D(s,a))]
 \end{aligned}\tag{9}
 $$
-式(9)实际上是二分类问题的损失函数。其中，$D:\mathcal{S}\times\mathcal{A}\to(0,1)$为区分专家策略下的$(s,a)$与智能体策略下的$(s,a)$的分类器。文献[5]表明最优损失函数为Jensen-Shannon Divergence：$D_{JS}(\rho_{\pi},\rho_{\pi_E})\triangleq D_{KL}(\rho_{\pi}\Vert\frac{\rho_{\pi}+\rho_{E}}{2})+D_{KL}(\rho_E\Vert\frac{\rho_{\pi}+\rho_E}{2})$。若把熵$H$视为策略的正则化器，那么新的模仿学习算法为
+式(9)实际上是二分类问题的损失函数。其中，$D:\mathcal{S}\times\mathcal{A}\to(0,1)$为区分专家策略下的$(s,a)$与智能体策略下的$(s,a)$的分类器。[GAN](https://www.robotech.ink/index.php/Foundation/203.html "GAN")论文中表明最优损失函数为Jensen-Shannon Divergence：$D_{JS}(\rho_{\pi},\rho_{\pi_E})\triangleq D_{KL}(\rho_{\pi}\Vert\frac{\rho_{\pi}+\rho_{E}}{2})+D_{KL}(\rho_E\Vert\frac{\rho_{\pi}+\rho_E}{2})$。若把熵$H$视为策略的正则化器，那么新的模仿学习算法为
 $$
 \begin{aligned}
 \underset{\pi}{minimize}\psi^{*}_{GA}(\rho_{\pi}-\rho_{\pi_E})-\lambda H(\pi)=D_{JS}(\rho_{\pi},\rho_{\pi_E})-\lambda H(\pi)
@@ -135,12 +136,11 @@ $$
 如图1所示，GAIL算法伪代码
 
 <div align="center">
-  <img src="./img/GAIL.png" width=700/>
+  <img src="https://www.robotech.ink/usr/uploads/2024/02/1923898129.png" width=700/>
 </div>
 <div align="center">
   图1 GAIL算法伪代码
 </div>
-
 
 
 ## 参考文献
