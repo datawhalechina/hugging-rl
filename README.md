@@ -52,6 +52,7 @@
 | 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/Manipulation/224.html) |
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/IL/106.html) |
 | 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/Manipulation/352.html) |
+| 第七章 | Diffuser：敏捷行为合成的扩散规划器                           |
 
 
 
@@ -63,7 +64,6 @@
 | 第二章 | [基于策略约束的方法与BCQ算法](https://www.robotech.ink/index.php/Offline-RL/181.html) |
 | 第三章 | [基于正则化的方法与CQL算法](https://www.robotech.ink/index.php/Offline-RL/120.html) |
 | 第四章 | [基于不确定性估计的方法与REM算法](https://www.robotech.ink/index.php/Offline-RL/191.html) |
-| 第五章 | Diffuser：敏捷行为合成的扩散规划器                           |
 
 
 
