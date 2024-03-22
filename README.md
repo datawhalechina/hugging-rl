@@ -68,6 +68,12 @@
 
 
 
+## Star History
+
+<div align=center>
+  <img src="https://api.star-history.com/svg?repos=datawhalechina/hugging-rl&type=Date" width=600/>
+</div>
+
 
 
 ## 关注我们
