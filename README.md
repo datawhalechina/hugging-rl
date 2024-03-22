@@ -39,6 +39,7 @@
 | 章节   | 内容                                                         |
 | :----- | :----------------------------------------------------------- |
 | 第一章 | [MCAC：蒙特卡洛增强的Actor-Critic算法](https://www.robotech.ink/index.php/RL/139.html) |
+| 第二章 | [SDQN：连续性动作的离散化序列预测](https://www.robotech.ink/index.php/RL/19.html) |
 
 
 
