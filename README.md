@@ -51,7 +51,7 @@
 | 第二章 | [GAIL：生成式对抗模仿学习](https://www.robotech.ink/index.php/IL/187.html) |
 | 第三章 | [IBC算法](https://www.robotech.ink/index.php/Manipulation/232.html) |
 | 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/Manipulation/224.html) |
-| 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/IL/106.html) |
+| 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/Robot-Learning/357.html) |
 | 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/Manipulation/352.html) |
 | 第七章 | [Diffuser：敏捷行为合成的扩散规划器](https://www.robotech.ink/index.php/Robot-Learning/357.html) |
 
