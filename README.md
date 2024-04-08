@@ -54,7 +54,7 @@
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/Manipulation/106.html) |
 | 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/Manipulation/352.html) |
 | 第七章 | [Diffuser：敏捷行为合成的扩散规划器](https://www.robotech.ink/index.php/Robot-Learning/357.html) |
-| 第八章 | DBC：扩散模型增强的行为克隆                                  |
+| 第八章 | [DBC：扩散模型增强的行为克隆](https://arxiv.org/abs/2302.13335) |
 
 
 
