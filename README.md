@@ -30,7 +30,7 @@
 
 | 章节   | 内容                                                         |
 | ------ | ------------------------------------------------------------ |
-| 第一章 | [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/Foundation-Model/172.html) |
+| 第一章 | [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/gm/172.html) |
 
 
 
@@ -38,8 +38,8 @@
 
 | 章节   | 内容                                                         |
 | :----- | :----------------------------------------------------------- |
-| 第一章 | [MCAC：蒙特卡洛增强的Actor-Critic算法](https://www.robotech.ink/index.php/RL/139.html) |
-| 第二章 | [SDQN：连续性动作的离散化序列预测](https://www.robotech.ink/index.php/RL/19.html) |
+| 第一章 | [MCAC：蒙特卡洛增强的Actor-Critic算法](https://www.robotech.ink/index.php/rl/139.html) |
+| 第二章 | [SDQN：连续性动作的离散化序列预测](https://www.robotech.ink/index.php/rl/19.html) |
 
 
 
@@ -48,12 +48,12 @@
 | 章节   | 内容                                                         |
 | :----- | :----------------------------------------------------------- |
 | 第一章 | 模仿学习简介                                                 |
-| 第二章 | [GAIL：生成式对抗模仿学习](https://www.robotech.ink/index.php/IL/187.html) |
-| 第三章 | [IBC算法](https://www.robotech.ink/index.php/Manipulation/232.html) |
-| 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/Manipulation/224.html) |
-| 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/Manipulation/106.html) |
-| 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/Manipulation/352.html) |
-| 第七章 | [Diffuser：敏捷行为合成的扩散规划器](https://www.robotech.ink/index.php/Robot-Learning/357.html) |
+| 第二章 | [GAIL：生成式对抗模仿学习](https://www.robotech.ink/index.php/il/187.html) |
+| 第三章 | [IBC算法](https://www.robotech.ink/index.php/manipulation/232.html) |
+| 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/manipulation/224.html) |
+| 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/manipulation/106.html) |
+| 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/manipulation/352.html) |
+| 第七章 | [Diffuser：敏捷行为合成的扩散规划器](https://www.robotech.ink/index.php/robot-learning/357.html) |
 
 
 
@@ -62,9 +62,9 @@
 | 章节   | 内容                                                         |
 | :----- | :----------------------------------------------------------- |
 | 第一章 | 离线强化学习简介                                             |
-| 第二章 | [基于策略约束的方法与BCQ算法](https://www.robotech.ink/index.php/Offline-RL/181.html) |
-| 第三章 | [基于正则化的方法与CQL算法](https://www.robotech.ink/index.php/Offline-RL/120.html) |
-| 第四章 | [基于不确定性估计的方法与REM算法](https://www.robotech.ink/index.php/Offline-RL/191.html) |
+| 第二章 | [基于策略约束的方法与BCQ算法](https://www.robotech.ink/index.php/orl/181.html) |
+| 第三章 | [基于正则化的方法与CQL算法](https://www.robotech.ink/index.php/orl/120.html) |
+| 第四章 | [基于不确定性估计的方法与REM算法](https://www.robotech.ink/index.php/orl/191.html) |
 
 
 
