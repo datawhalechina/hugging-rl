@@ -31,6 +31,7 @@
 | 章节   | 内容                                                         |
 | ------ | ------------------------------------------------------------ |
 | 第一章 | [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/gm/172.html) |
+| 第二章 | [Consistency Models：一致性模型](https://arxiv.org/abs/2303.01469) |
 
 
 
@@ -52,8 +53,7 @@
 | 第三章 | [IBC算法](https://www.robotech.ink/index.php/manipulation/232.html) |
 | 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/manipulation/224.html) |
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/manipulation/106.html) |
-| 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/manipulation/352.html) |
-| 第七章 | [Diffuser：敏捷行为合成的扩散规划器](https://www.robotech.ink/index.php/robot-learning/357.html) |
+| 第六章 | [Consistency Policy：通过一致性蒸馏加速视觉运动策略](https://arxiv.org/abs/2405.07503) |
 
 
 
