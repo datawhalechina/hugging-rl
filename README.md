@@ -53,7 +53,8 @@
 | 第三章 | [IBC算法](https://www.robotech.ink/index.php/manipulation/232.html) |
 | 第三章 | [BeT：一次克隆k个模式](https://www.robotech.ink/index.php/manipulation/224.html) |
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/manipulation/106.html) |
-| 第六章 | [Consistency Policy：通过一致性蒸馏加速视觉运动策略](https://arxiv.org/abs/2405.07503) |
+| 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/manipulation/352.html) |
+| 第七章 | [Consistency Policy：通过一致性蒸馏加速视觉运动策略](https://arxiv.org/abs/2405.07503) |
 
 
 
