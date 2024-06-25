@@ -31,7 +31,7 @@
 | 章节   | 内容                                                         |
 | ------ | ------------------------------------------------------------ |
 | 第一章 | [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/gm/172.html) |
-| 第二章 | [Consistency Models：一致性模型](https://arxiv.org/abs/2303.01469) |
+| 第二章 | [Consistency Models：一致性模型](https://www.robotech.ink/index.php/gm/523.html) |
 
 
 
@@ -55,17 +55,6 @@
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/manipulation/106.html) |
 | 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/manipulation/352.html) |
 | 第七章 | [Consistency Policy：通过一致性蒸馏加速视觉运动策略](https://arxiv.org/abs/2405.07503) |
-
-
-
-### 离线强化学习篇
-
-| 章节   | 内容                                                         |
-| :----- | :----------------------------------------------------------- |
-| 第一章 | 离线强化学习简介                                             |
-| 第二章 | [基于策略约束的方法与BCQ算法](https://www.robotech.ink/index.php/orl/181.html) |
-| 第三章 | [基于正则化的方法与CQL算法](https://www.robotech.ink/index.php/orl/120.html) |
-| 第四章 | [基于不确定性估计的方法与REM算法](https://www.robotech.ink/index.php/orl/191.html) |
 
 
 
