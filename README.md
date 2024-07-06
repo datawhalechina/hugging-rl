@@ -31,7 +31,7 @@
 | 章节   | 内容                                                         |
 | ------ | ------------------------------------------------------------ |
 | 第一章 | [DDPMs：去噪扩散概率模型](https://www.robotech.ink/index.php/archives/172.html) |
-| 第二章 | [EDM：阐明基于扩散生成模型的设计空间](https://arxiv.org/abs/2206.00364) |
+| 第二章 | [EDM：阐明基于扩散生成模型的设计空间](https://www.robotech.ink/index.php/archives/537.html) |
 | 第三章 | [Consistency Models：一致性模型](https://www.robotech.ink/index.php/archives/523.html) |
 
 
