@@ -57,6 +57,7 @@
 | 第五章 | [扩散策略：通过动作扩散进行的视觉策略学习](https://www.robotech.ink/index.php/archives/106.html) |
 | 第六章 | [DP3：3D扩散策略](https://www.robotech.ink/index.php/archives/352.html) |
 | 第七章 | [Consistency Policy：通过一致性蒸馏加速视觉运动策略](https://www.robotech.ink/index.php/archives/529.html) |
+| 第八章 | [MDT：从多模态目标中学习多功能行为](https://openreview.net/pdf?id=Pt6fLfXMRW) |
 
 
 
